@@ -68,6 +68,10 @@
     margin-left: 0;
 }
 
+.img-footer{
+
+}
+
 /*Medias querys*/
 /*NavBar*/
 @media screen and (min-width: 748px) and (max-width: 1200px){
