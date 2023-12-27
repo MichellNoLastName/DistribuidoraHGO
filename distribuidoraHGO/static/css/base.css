@@ -1,0 +1,296 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    animation: fadeInDown;
+    animation-duration: 1.5s;
+
+}
+
+#navbar{
+    background: rgb(255,255,255) !important;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,177,255,1) 100%) !important;
+    font-weight: 700;
+}
+
+.icono-navbar{
+    width:120px;
+    height:72px;
+}
+
+.navbar-toggler {
+    background-color: white !important; /* Cambia el color de fondo del botón */
+    color: black !important; /* Cambia el color del texto del botón */
+    /* Otros estilos que desees aplicar */
+}
+
+#form_navbarSearch{
+    width: 18em;
+}
+#btn_navbarSearch{
+    border: none;
+    color: black;
+}
+
+/*Botones del segundo navbar*/
+#navSecond:hover{
+    background-color: black;
+    color: white !important;
+}
+/*Icono de busqueda rapida*/
+.fa-searchengin{
+    font-size: 1.5em;
+}
+
+/*Icono de Whatsapp*/
+.fa-whatsapp{
+    font-size: 1.8em;
+    color:green;
+    background-color: transparent;
+    border-radius: 50%;
+}
+/*Icono de Facebook*/
+.fa-facebook{
+    font-size: 1.8em;
+    border-radius: 100%;
+    background-color: white;
+    color:#3b5998;
+}
+
+#btn_navbarSearch:hover {
+    background-color: black; /* Cambia el color de fondo cuando se pasa el mouse */
+    color: #fff; /* Cambia el color del texto cuando se pasa el mouse */
+    /* Otros estilos que desees aplicar al pasar el mouse sobre el botón */
+  }
+
+/*footer*/
+.div_footer{
+    margin-left: 0;
+}
+
+.img-footer{
+    width: 15em;
+    height: 10em;
+}
+
+.sn-icons-footer{
+    display: grid !important;
+    grid-template-columns: repeat(2,6em);
+    justify-content: center;
+}
+
+.fa-footer{
+    color:#0098db !important;
+    margin-top: 1em;
+}
+
+.phone-info{
+    display: grid !important;
+    grid-template-columns: repeat(2,7em);
+}
+
+.email-info{
+    margin-top: 3em !important;
+}
+
+
+.footer_subtitles{
+    font-weight: bold;
+    color:#0098db;
+}
+
+.footer-left{
+    border-left: 2px black solid;
+}
+
+/*Medias querys*/
+
+@media screen and (min-width: 1450px){
+   footer .email-info{
+        margin-top: 3em !important;
+        margin-right: 3em !important;
+    }
+
+    footer .phone-info{
+        padding-left: 2em !important;
+    }
+}
+
+@media screen and (width:1280px){
+    .navbar{
+        font-size: 14px;
+    }
+
+    footer .img-footer{
+        width: 13em;
+        height: 9em;
+    }
+
+    footer .phone-info{
+        margin-bottom: -20px;
+    }
+
+    footer .email-info{
+        display: grid !important;
+        text-align: center;
+        grid-template-columns: repeat(1,260px);
+        justify-content: center;
+    }
+
+    footer .email-info a{
+        margin-top: 0;
+        justify-content: right;
+    }
+}
+@media screen and (min-width: 748px) and (max-width: 1400px){
+    .icono-navbar{
+        width:85px;
+        height:48px;
+    }
+
+    .navbar{
+        font-size: 13px;
+    }
+
+
+    #form_navbarSearch{
+        font-size: 13px;
+    }
+
+    .img-footer{
+        width: 8em;
+        height: 5em;
+    }
+
+    footer .location-info{
+        display: grid !important;
+        text-align: center;
+    }
+
+    footer .time-info{
+        display: grid !important;
+        text-align: center;
+    }
+
+    footer .phone-info{
+        display: grid !important;
+        text-align: center;
+        grid-template-columns: repeat(1,1fr);
+        justify-content: center;
+    }
+
+    footer .phone-info p{
+        text-align: center;
+    }
+
+    footer .email-info{
+        margin-top: 3em !important;
+        display: grid !important;
+        text-align: center;
+    }
+
+    .footer_subtitles{
+        text-align: center;
+    }
+
+    .footer_text{
+        text-align: justify;
+    }
+
+    footer .fa-whatsapp{
+        font-size: 1.4em;
+    }
+
+    footer .fa-facebook{
+        font-size: 1.4em;
+    }
+
+    .footer{
+        font-size: 13px;
+    }
+
+    .footer .footer_subtitles{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .navbar{
+        font-size: 10px;
+    }
+
+    #form_navbarSearch{
+        width: 18em;
+        height: 2em;
+        font-size: 10px;
+    }
+
+    #btn_navbarSearch{
+        font-size: 10px;
+    }
+
+    .icono-navbar{
+        width:50px;
+        height:24px;
+    }
+
+    .img-footer{
+        width: 6em;
+        height: 4em;
+    }
+
+    /*Navbar*/
+    .footer{
+        font-size: 6px;
+    }
+
+    .footer .footer_subtitles{
+        font-size: 9px;
+        text-align: center;
+    }
+
+    footer .footer_text{
+        text-align: justify;
+    }
+
+    footer .fa-footer{
+        font-size: 9px;
+    }
+
+    footer .fa-whatsapp{
+        font-size: 16px;
+    }
+
+    footer .fa-facebook{
+        font-size: 16px;
+    }
+
+    footer .time-info{
+        width: 110px;
+    }
+
+    footer .location-info{
+        width: 110px;
+    }
+
+    footer .phone-info{
+        width: 110px;
+        display: grid !important;
+        text-align: center;
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    footer .phone-info p{
+        text-align: center;
+    }
+
+    footer .email-info{
+        width: 110px;
+        margin-right: 4em;
+    }
+
+
+
+}
