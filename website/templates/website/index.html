@@ -1,4 +1,28 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-    <h1>Prueba</h1>
+    <section>
+    <!-- Slider main container -->
+        <div class="swiper">
+        <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+            <!-- Slides -->
+                <div class="swiper-slide" id="swiperPrincipal"></div>
+                <div class="swiper-slide"><h1>Promociones</h1></div>
+                <div class="swiper-slide" id="swiperMetodosPago">
+                    <div class="container" id="button_container">
+                        <button class="buttonStore"><i class="fa-solid fa-shop"></i>  Tienda</button>
+                    </div>
+                </div>
+                <div class="swiper-slide" id="swiperEnvios"></div>
+            </div>
+            <!-- If we need pagination -->
+
+        <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+        </div>
+    </section>
+    <section class="paymentMethods"></section>
 {% endblock %}

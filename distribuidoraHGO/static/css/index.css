@@ -1,0 +1,187 @@
+:root{
+    --color-secondary-white: white;
+    --color-primary-button: #0077B6;
+    --color-secondary-button: #00B4D8;
+}
+#swiperPrincipal{
+    background-image: url("../images/bannerMarcas.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 40%;
+}
+
+#swiperMetodosPago{
+    background-image: url("../images/metodosPago.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 40%;
+}
+
+#swiperEnvios{
+    background-image: url("../images/envios.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 40%;
+}
+
+#button_container{
+    position:absolute;
+    top: 16%;
+    left: 78%;
+}
+
+.buttonStore{
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 1.5rem 5%;
+    background: var(--color-primary-button);
+    color: var(--color-secondary-white);
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: normal;
+    border: 0;
+    border-radius: 0.4rem;
+    box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.4);
+    appearance: none;
+    cursor: pointer;
+    transition: background 250ms, box-shadow 250ms;
+}
+
+.buttonStore:hover {
+    background: var(--color-secondary-button);
+    box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
+  }
+
+.buttonStore:active {
+    box-shadow: -4px 4px 24px rgba(0, 0, 0, 0.8);
+  }
+
+.buttonStore:active,
+  .buttonStore:focus {
+    outline: none;
+  }
+
+.paymentMethods{
+    padding-top:22%;
+    background-image: url("../images/FormasPago.jpg");
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* Media query para dispositivos pequeños (como teléfonos) */
+
+  @media only screen and (max-width: 600px) {
+    #swiperPrincipal{
+        padding-bottom: 40%;
+    }
+
+    #button_container{
+        top: 16%;
+        left: 75%;
+
+    }
+
+    .buttonStore{
+        padding: 0.5rem 3%;
+        font-weight: 600;
+        font-size: 0.7rem;
+    }
+
+    #swiperMetodosPago{
+        padding-bottom: 40%;
+    }
+
+    #swiperEnvios{
+        padding-bottom: 40%;
+    }
+
+    .swiper-button-prev, .swiper-button-next{
+        visibility: hidden;
+    }
+  }
+
+  /* Media query para dispositivos medianos (como tablets) */
+
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    #swiperPrincipal{
+        padding-bottom: 40%;
+    }
+
+    #button_container{
+        top: 16%;
+        left: 76%;
+
+    }
+
+    .buttonStore{
+        padding: 1rem 5%;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    #swiperMetodosPago{
+        padding-bottom: 40%;
+    }
+
+    #swiperEnvios{
+        padding-bottom: 40%;
+    }
+
+    .swiper-button-prev, .swiper-button-next{
+        visibility: hidden;
+    }
+
+  }
+
+
+  @media only screen and (min-width: 1025px) and (max-width:1300px){
+    #button_container{
+        top: 16%;
+        left: 77%;
+    }
+    #swiperPrincipal{
+        padding-bottom: 40%;
+    }
+
+    #swiperMetodosPago{
+        padding-bottom: 40%;
+    }
+
+    #swiperEnvios{
+        padding-bottom: 40%;
+    }
+
+  }
+
+  @media screen and (min-width: 1800px) {
+    #button_container{
+        top: 15vh;
+        left: 75vw;
+
+    }
+
+    .buttonStore{
+        padding: 2rem 6rem;
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
+
+    .swiper{
+        height: 700px;
+    }
+
+    .swiper1{
+        padding-bottom: 700px;
+    }
+
+    .swiper2{
+        padding-bottom: 700px;
+    }
+    .swiper3{
+        padding-bottom: 700px;
+    }
+  }

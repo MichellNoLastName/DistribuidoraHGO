@@ -4,15 +4,21 @@
     font-family: 'Montserrat', sans-serif;
     font-family: 'Nunito Sans', sans-serif;
     font-family: 'Roboto', sans-serif;
-    animation: fadeInDown;
-    animation-duration: 1.5s;
+}
 
+.hidden{
+    overflow: hidden;
+}
+#spinner-container {
+    display: flex;
+    height: 100vh;
 }
 
 #navbar{
     background: rgb(255,255,255) !important;
     background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,177,255,1) 100%) !important;
     font-weight: 700;
+    font-size: 18px;
 }
 
 .icono-navbar{
@@ -28,6 +34,7 @@
 
 #form_navbarSearch{
     width: 18em;
+    font-size: 17px;
 }
 #btn_navbarSearch{
     border: none;
@@ -119,8 +126,12 @@
 }
 
 @media screen and (width:1280px){
-    .navbar{
-        font-size: 14px;
+    #navbar{
+        font-size: 16px;
+    }
+
+    #form_navbarSearch{
+        font-size: 13px !important;
     }
 
     footer .img-footer{
@@ -218,7 +229,7 @@
 
 @media screen and (max-width: 450px){
     .navbar{
-        font-size: 10px;
+        font-size: 10px !important;
     }
 
     #form_navbarSearch{
