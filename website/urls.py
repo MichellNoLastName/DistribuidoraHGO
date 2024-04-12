@@ -5,4 +5,5 @@ app_name="website"
 
 urlpatterns = [
     path("",views.index,name="index"),
+    path("about_us/",views.aboutus,name="aboutus"),
 ]
