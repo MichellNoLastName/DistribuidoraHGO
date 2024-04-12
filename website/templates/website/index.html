@@ -3,26 +3,147 @@
 {% block content %}
     <section>
     <!-- Slider main container -->
-        <div class="swiper">
+        <div class="swiper swiper1">
         <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
             <!-- Slides -->
-                <div class="swiper-slide" id="swiperPrincipal"></div>
-                <div class="swiper-slide"><h1>Promociones</h1></div>
-                <div class="swiper-slide" id="swiperMetodosPago">
+                <div class="swiper-slide" id="swiperPrincipal">
+                    <img src="{% static 'images/disHGOtrans.png' %}" class="imageLogo" alt="Distribuidora HGO Logo"/>
+                </div>
+                <div class="swiper-slide" id="swiperMarcas"></div>
+                <!--<div class="swiper-slide" id="swiperMetodosPago">
                     <div class="container" id="button_container">
                         <button class="buttonStore"><i class="fa-solid fa-shop"></i>  Tienda</button>
                     </div>
-                </div>
+                </div>-->
                 <div class="swiper-slide" id="swiperEnvios"></div>
             </div>
             <!-- If we need pagination -->
-
         <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-
         </div>
     </section>
-    <section class="paymentMethods"></section>
+    <section class="mt-4">
+        <div class="container-fluid my-2 text-center cat-title box">
+            <h2>Categorias</h2>
+        </div>
+        <div class="container containerCards box">
+            <div class="panel active" style="background-image: url('https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80')">
+              <h3>Explore The World</h3>
+            </div>
+            <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80')">
+              <h3>Wild Forest</h3>
+            </div>
+            <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80')">
+              <h3>Sunny Beach</h3>
+            </div>
+            <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1551009175-8a68da93d5f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80')">
+              <h3>City on Winter</h3>
+            </div>
+            <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80')">
+              <h3>Mountains - Clouds</h3>
+            </div>
+
+          </div>
+    </div>
+    </section>
+    <section class="products mt-4">
+        <div class="container-fluid my-2 text-center cat-title box">
+            <h2>Productos</h2>
+        </div>
+        <div class="container text-center">
+            <div class="row mb-4 align-items-center box">
+                <div class="col-3">
+                    <p class="text-center cat-subtitle" id="subtitle1">Tubos BD&reg; VACUTAINER</p>
+                    <button class="buttonSeeMore" id="buttonSeeCat1">Ver Más</button>
+                </div>
+                <div class="col-9">
+                    <div class="swiper swiperCategories">
+                        <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                            <!-- Slides -->
+                                <div class="swiper-slide" id="swiperCat1"></div>
+                                <div class="swiper-slide" id="swiperCat2"></div>
+                                <div class="swiper-slide" id="swiperCat3"></div>
+                            </div>
+                            <!-- If we need pagination -->
+                        <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4 align-items-center box">
+                <div class="col-9">
+                    <div class="swiper swiperCategories2">
+                        <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                            <!-- Slides -->
+                                <div class="swiper-slide" id="swiperCat4"></div>
+                                <div class="swiper-slide" id="swiperCat5"></div>
+                            </div>
+                            <!-- If we need pagination -->
+                        <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                </div>
+                <div class="col-3">
+                    <p class="text-center cat-subtitle" id="subtitle2">Guantes AMBIDERM&trade;</p>
+                    <button class="buttonSeeMore" id="buttonSeeCat2">Ver Más</button>
+                </div>
+            </div>
+            <div class="row mb-4 align-items-center box">
+                <div class="col-3">
+                    <p class="text-center cat-subtitle" id="subtitle3">Reactivos</p>
+                    <button class="buttonSeeMore" id="buttonSeeCat3">Ver Más</button>
+                </div>
+                <div class="col-9">
+                    <div class="swiper swiperCategories3">
+                        <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                            <!-- Slides -->
+                                <div class="swiper-slide" id="swiperCat6"></div>
+                                <div class="swiper-slide" id="swiperCat7"></div>
+                            </div>
+                            <!-- If we need pagination -->
+                        <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                </div>
+            </div>
+            <div class="row mb-4 align-items-center box">
+                <div class="col-9">
+                    <div class="swiper swiperCategories4">
+                        <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                            <!-- Slides -->
+                                <div class="swiper-slide" id="swiperCat8"></div>
+                                <div class="swiper-slide" id="swiperCat9"></div>
+                            </div>
+                            <!-- If we need pagination -->
+                        <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                </div>
+                <div class="col-3">
+                    <p class="text-center cat-subtitle" id="subtitle4">Parámetros Urinarios</p>
+                    <button class="buttonSeeMore" id="buttonSeeCat4">Ver Más</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="paymentMethods box"></section>
+    <!--<section class="container mt-4 mb-4 location box">
+        <div class="container text-center">
+            <h2>Ubicacion</h2>
+        </div>
+        <div class="container align-items-center justify-content-around row">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1363.782778319347!2d-98.73544567529845!3d20.06933855653398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1a7264e954d51%3A0xc03e98636a033a38!2sC.%20Acasia%20319%2C%20El%20Saucillo%2C%20Abundio%20Mart%C3%ADnez%2C%2042186%20El%20Saucillo%20Fraccionamiento%2C%20Hgo.!5e0!3m2!1ses-419!2smx!4v1710385317456!5m2!1ses-419!2smx"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>-->
 {% endblock %}

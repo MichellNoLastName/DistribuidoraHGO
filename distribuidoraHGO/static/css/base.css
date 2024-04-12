@@ -4,22 +4,62 @@
     font-family: 'Montserrat', sans-serif;
     font-family: 'Nunito Sans', sans-serif;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }
 
 .hidden{
     overflow: hidden;
 }
+
+.formSearchMovil{
+    display: none;
+}
+
+.btnSearchMovil{
+    display: inline;
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+    font-size: 15px;
+    height: 40px;
+    width: 40px;
+    transition: transform 0.8s ease;
+}
+.formSearchMovil .inputSearchMovil {
+    margin-top: 4%;
+    background-color: #fff;
+    display: inline;
+    border: 0;
+    font-size: 14px;
+    height: 40px;
+    width: 0px;
+    transition: width 0.8s ease;
+  }
+
+.btnSearchMovil:focus,.inputSearchMovil:focus{
+    outline:none;
+}
+
+.formSearchMovil.active .inputSearchMovil{
+    width: 130px;
+}
+
+.formSearchMovil.active .btnSearchMovil{
+    transform: translateX(1%);
+}
+
+
 #spinner-container {
     display: flex;
     height: 100vh;
 }
 
 #navbar{
-    background: rgb(255,255,255) !important;
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,177,255,1) 100%) !important;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,177,255,1) 100%);
     font-weight: 700;
     font-size: 18px;
 }
+
 
 .icono-navbar{
     width:120px;
@@ -43,7 +83,7 @@
 
 /*Botones del segundo navbar*/
 #navSecond:hover{
-    background-color: black;
+    background-color: #343a40;
     color: white !important;
 }
 /*Icono de busqueda rapida*/
@@ -56,25 +96,28 @@
     font-size: 1.8em;
     color:green;
     background-color: transparent;
-    border-radius: 50%;
+    border-radius: 100% !important;
 }
 /*Icono de Facebook*/
 .fa-facebook{
     font-size: 1.8em;
-    border-radius: 100%;
+    border-radius:100% !important;
     background-color: white;
     color:#3b5998;
 }
 
 #btn_navbarSearch:hover {
-    background-color: black; /* Cambia el color de fondo cuando se pasa el mouse */
+    background-color: #343a40; /* Cambia el color de fondo cuando se pasa el mouse */
     color: #fff; /* Cambia el color del texto cuando se pasa el mouse */
     /* Otros estilos que desees aplicar al pasar el mouse sobre el botón */
   }
 
 /*footer*/
-.div_footer{
-    margin-left: 0;
+footer{
+    font-size: 13px;
+    box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
 }
 
 .img-footer{
@@ -82,46 +125,30 @@
     height: 10em;
 }
 
-.sn-icons-footer{
-    display: grid !important;
-    grid-template-columns: repeat(2,6em);
-    justify-content: center;
-}
-
 .fa-footer{
     color:#0098db !important;
     margin-top: 1em;
 }
-
-.phone-info{
-    display: grid !important;
-    grid-template-columns: repeat(2,7em);
-}
-
-.email-info{
-    margin-top: 3em !important;
-}
-
 
 .footer_subtitles{
     font-weight: bold;
     color:#0098db;
 }
 
-.footer-left{
-    border-left: 2px black solid;
+.footer-top{
+    display: none !important;
+
 }
 
 /*Medias querys*/
 
-@media screen and (min-width: 1450px){
-   footer .email-info{
-        margin-top: 3em !important;
-        margin-right: 3em !important;
+@media only screen and (max-width: 800px){
+    #formSearch{
+        display: none !important;
     }
 
-    footer .phone-info{
-        padding-left: 2em !important;
+    .formSearchMovil{
+        display: inline;
     }
 }
 
@@ -133,29 +160,8 @@
     #form_navbarSearch{
         font-size: 13px !important;
     }
-
-    footer .img-footer{
-        width: 13em;
-        height: 9em;
-    }
-
-    footer .phone-info{
-        margin-bottom: -20px;
-    }
-
-    footer .email-info{
-        display: grid !important;
-        text-align: center;
-        grid-template-columns: repeat(1,260px);
-        justify-content: center;
-    }
-
-    footer .email-info a{
-        margin-top: 0;
-        justify-content: right;
-    }
 }
-@media screen and (min-width: 748px) and (max-width: 1400px){
+@media screen and (min-width: 601px) and (max-width: 1024px){
     .icono-navbar{
         width:85px;
         height:48px;
@@ -170,40 +176,24 @@
         font-size: 13px;
     }
 
+    footer .footer-top{
+        display: inline-block !important;
+    }
+    footer .contact-footer-left{
+        display: none;
+    }
+
+    footer .footer-right{
+        border: none;
+    }
+
     .img-footer{
-        width: 8em;
-        height: 5em;
-    }
-
-    footer .location-info{
-        display: grid !important;
-        text-align: center;
-    }
-
-    footer .time-info{
-        display: grid !important;
-        text-align: center;
-    }
-
-    footer .phone-info{
-        display: grid !important;
-        text-align: center;
-        grid-template-columns: repeat(1,1fr);
-        justify-content: center;
-    }
-
-    footer .phone-info p{
-        text-align: center;
-    }
-
-    footer .email-info{
-        margin-top: 3em !important;
-        display: grid !important;
-        text-align: center;
+        width: 37% !important;
+        height: 80% !important;
     }
 
     .footer_subtitles{
-        text-align: center;
+        text-align: start;
     }
 
     .footer_text{
@@ -218,16 +208,19 @@
         font-size: 1.4em;
     }
 
-    .footer{
+    footer{
         font-size: 13px;
+        box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+        -webkit-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+        -moz-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
     }
 
-    .footer .footer_subtitles{
+    footer .footer_subtitles{
         font-size: 16px;
     }
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 600px){
     .navbar{
         font-size: 10px !important;
     }
@@ -247,23 +240,29 @@
         height:24px;
     }
 
-    .img-footer{
-        width: 6em;
-        height: 4em;
+    footer .footer-top{
+        display: inline-block !important;
+    }
+    footer .contact-footer-left{
+        display: none;
     }
 
-    /*Navbar*/
+    footer .footer-right{
+        border: none;
+    }
+
+    .img-footer{
+        width: 37% !important;
+        height: 80% !important;
+    }
+
     .footer{
         font-size: 6px;
     }
 
     .footer .footer_subtitles{
         font-size: 9px;
-        text-align: center;
-    }
-
-    footer .footer_text{
-        text-align: justify;
+        text-align: start;
     }
 
     footer .fa-footer{
@@ -277,31 +276,6 @@
     footer .fa-facebook{
         font-size: 16px;
     }
-
-    footer .time-info{
-        width: 110px;
-    }
-
-    footer .location-info{
-        width: 110px;
-    }
-
-    footer .phone-info{
-        width: 110px;
-        display: grid !important;
-        text-align: center;
-        grid-template-columns: repeat(1,1fr);
-    }
-
-    footer .phone-info p{
-        text-align: center;
-    }
-
-    footer .email-info{
-        width: 110px;
-        margin-right: 4em;
-    }
-
 
 
 }

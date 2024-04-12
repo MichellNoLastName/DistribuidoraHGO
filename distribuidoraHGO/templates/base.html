@@ -24,14 +24,15 @@
     {% include 'navbar.html' %}
     {% block content %}
     {% endblock %}
-    <footer class="footer mt-auto py-3 bg-white">
-        <div class="container-fluid div_footer text-center bg-white pb-2">
-            <div class="row">
-              <div class="col">
-                <a href="{% url 'website:index' %}">
-                    <img class="img-footer mt-4" src="{% static 'images/distribuidoraHGO.jpg' %}" alt="Logo Footer"/>
-                </a>
-                <div class="container-sm row mt-4 sn-icons-footer">
+    <footer class="footer mt-auto bg-white box">
+        <div class="container-fluid">
+            <div class="row footer-top">
+                <div class="row text-center">
+                    <a href="{% url 'website:index' %}">
+                        <img class="img-footer mt-4" src="{% static 'images/distribuidoraHGO.jpg' %}" alt="Logo Footer"/>
+                    </a>
+                </div>
+                <div class="row text-center">
                     <div class="col">
                         <a class="nav-link" href="https://wa.me/527714336319">
                             <i class="fa-brands fa-whatsapp"></i>
@@ -46,52 +47,61 @@
                     </div>
                 </div>
             </div>
-              <div class="col footer-left">
-                <div class="container-fluid row time-info">
-                    <div class="col">
-                        <i class="fa-solid fa-clock fa-lg fa-footer"></i>
+            <div class="row">
+                <div class="col-xl-4 text-center contact-footer-left">
+                    <div class="row">
+                        <a href="{% url 'website:index' %}">
+                            <img class="img-footer mt-4" src="{% static 'images/distribuidoraHGO.jpg' %}" alt="Logo Footer"/>
+                        </a>
                     </div>
-                    <div class="col text-start ml-0">
-                        <h4 class="footer_subtitles">Horario</h4>
-                        <p class="footer_text">Lunes a Viernes de 10:00 a.m. a 8:00 p.m. y Sábado de 10:00 a.m. to 5:00 p.m.</p>
-                    </div>
-                </div>
-                <div class="container-fluid row location-info">
-                    <div class="col">
-                        <i class="fa-solid fa-location-dot fa-lg fa-footer"></i>
-                    </div>
-                    <div class="col text-start ml-0">
-                        <h4 class="footer_subtitles">Ubicación</h4>
-                        <p class="footer_text">Sta. Julia, La Providencia, 42186 Cadena, Hgo. México</p>
-                    </div>
-                </div>
-              </div>
-                <div class="col">
-                    <div class="container-fluid row phone-info">
+                    <div class="row">
                         <div class="col">
-                            <i class="fa-solid fa-phone fa-lg fa-footer"></i>
+                            <a class="nav-link" href="https://wa.me/527714336319">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <p>Whatsapp</p>
+                            </a>
                         </div>
-                        <div class="col text-start ml-0">
+                        <div class="col">
+                            <a class="nav-link" href="https://www.facebook.com/DistribuidoraQuimicaHGO">
+                                <i class="fa-brands fa-facebook"></i>
+                                <p>Facebook</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-sm-12 col-12 footer-right">
+                    <div class="row row-cols-4 mt-4">
+                        <div class="col-xl-1 col-sm-1 col-1 text-end"><i class="fa-solid fa-clock fa-lg fa-footer"></i></div>
+                        <div class="col-xl-5 col-sm-5 col-5">
+                            <h4 class="footer_subtitles">Horario</h4>
+                            <p class="footer_text">Lunes a Viernes de 9:00 a.m. a 6:00 p.m. y Sábado de 9:00 a.m. to 2:00 p.m.</p>
+                        </div>
+                        <div class="col-xl-1 col-sm-1 col-1 text-end"><i class="fa-solid fa-location-dot fa-lg fa-footer"></i></div>
+                        <div class="col-xl-5 col-sm-5 col-5">
+                            <h4 class="footer_subtitles">Ubicación</h4>
+                            <p class="footer_text">Sta. Julia, La Providencia, 42186 Cadena, Hgo. México</p>
+                        </div>
+                    </div>
+                    <div class="row row-cols-4 mt-4">
+                        <div class="col-xl-1 col-sm-1 col-1 text-end"><i class="fa-solid fa-phone fa-lg fa-footer"></i></div>
+                        <div class="col-xl-5 col-sm-5 col-5">
                             <h4 class="footer_subtitles">Teléfono</h4>
                             <a href="tel:+527714336319" class="text-info-emphasis"><p class="footer_text">7714336319</p></a>
                         </div>
-                    </div>
-                    <div class="container-fluid row email-info">
-                        <div class="col">
-                            <i class="fa-solid fa-envelope fa-lg fa-footer"></i>
-                        </div>
-                        <div class="col text-start">
+                        <div class="col-xl-1 col-sm-1 col-1 text-end"><i class="fa-solid fa-envelope fa-lg fa-footer"></i></div>
+                        <div class="col-xl-5 col-sm-5 col-5">
                             <h4 class="footer_subtitles">Correo Electrónico</h4>
-                            <a href="mailto:distribuidoraHGO.ecommerce@gmail.com" class="text-info-emphasis"><p class="footer_text">distribuidoraHGO.ecommerce@gmail.com</p></a>
+                            <a href="mailto:distribuidoraHGO.ecommerce@gmail.com" class="text-info-emphasis"><p class="footer_text">distribuidoraHGO.EC@gmail.com</p></a>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row bg-black text-center">
+                <span class="text-white">&copy; 2024 Distribuidora Química HGO | Todos los derechos reservados</span>
+            </div>
         </div>
-        <div class="container-fluid text-center bg-black pt-2 pb-2">
-          <span class="text-white">&copy; 2024 Distribuidora Química HGO | Todos los derechos reservados</span>
-        </div>
-      </footer>
+    </footer>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
