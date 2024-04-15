@@ -55,11 +55,14 @@
 
 
 /*Swipers*/
-#swiperPrincipal{
+.principal{
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho del viewport */
     background-image: url("../images/Presentacion.jpg");
-    background-size: cover;
+    background-size: 120%;
     background-repeat: no-repeat;
-    padding-bottom: 40%;
+    background-position: center top;
+    background-attachment: fixed;
+    padding-bottom: 10%;
 }
 
 #swiperMarcas{
@@ -163,16 +166,31 @@
 
 /*Logo de la barra superio de Busqueda*/
 
-.imageLogo{
-   position: absolute;
-   top: 0%;
-   right: 25%;
-   width: 50%;
-   filter: drop-shadow(
+#imagePresentation{
+    display: none;
+    width: 50%;
+    filter: drop-shadow(
     0 0 15px rgba(0,0,0,0.7)
    );
+}
 
+.slogan{
+    display: none;
+    margin-top: 2%;
+    font-family: "Sedan", serif;
+    font-style: italic;
+    font-size: 4rem;
+    filter: drop-shadow(
+    0 0 15px rgba(0,0,0,1)
+   );
+   color:#0077b6;
+}
 
+.imageLogo{
+   padding-top: 5%;
+   animation: fadeInDown;
+   animation-duration: 6s;
+   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 /*Boton para acceder a la tienda del Swiper de Formas de Pago*/
@@ -289,6 +307,10 @@
 
     }
 
+    .box{
+        transition: transform 4s ease;
+    }
+
     .panel{
         height: 20vh;
     }
@@ -303,6 +325,10 @@
         padding: 0.5rem 0.5rem;
         font-weight: 600;
         font-size: 0.6rem;
+    }
+
+    .principal{
+        background-size: 160%;
     }
 
     #swiperMetodosPago{
@@ -332,6 +358,11 @@
         font-weight: 600;
         font-family: 'Monserrtar', sans-serif;
     }
+
+    .slogan{
+        font-size:1rem
+    }
+
   }
 
   /* Media query para dispositivos medianos (como tablets) */
@@ -347,13 +378,12 @@
 
     }
 
-    .panel{
-        height: 30vh;
+    .box{
+        transition: transform 4s ease;
     }
 
-    .panel:nth-of-type(4),
-    .panel:nth-of-type(5) {
-        display: none;
+    .panel{
+        height: 30vh;
     }
 
     .buttonStore{
@@ -366,6 +396,10 @@
         padding: 0.8rem 8%;
         font-weight: 700;
         font-size: 1rem;
+    }
+
+    .principal{
+        background-size: 160%;
     }
 
     #swiperMetodosPago{
@@ -394,6 +428,10 @@
         font-size: 1rem;
         font-weight: 600;
         font-family: 'Monserrtar', sans-serif;
+    }
+
+    .slogan{
+        font-size:2rem;
     }
 
   }

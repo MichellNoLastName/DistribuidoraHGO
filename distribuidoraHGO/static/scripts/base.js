@@ -1,32 +1,37 @@
 //Función para mostrar el spinner de carga
 window.onload = ()=> {
-    $('#spinner-container').fadeOut('slow',function(){
-        $('body').css({ opacity: 0, display: 'block' }).animate({ opacity: 1, top: '+=20' }, 2000);
-    });
-    $('.imageLogo').css({ opacity: 0, display: 'block'}).animate({ opacity: 1, top: '+=10%' }, 3000);
     $('body').removeClass('hidden');
+    $('#spinner-container').fadeOut('slow',function(){
+        let body = document.querySelector( 'body' )
+        let topValue = 0.005 * body.offsetWidth + 1;
+        topValue = "+=" + parseInt(topValue) + "%"
+        $('body').css({ opacity: 0, display: 'block' }).animate({ opacity: 1, top: '+=0' }, 5000);
+        $('#imagePresentation').css({opacity:1,display:'block'})
+        $('.slogan').css({opacity:1,display:'block'})
+    });
 
 };
-
-const boxes = document.querySelectorAll('.box')
-
-window.addEventListener('scroll', checkBoxes)
-
-checkBoxes()
-
 //Efecto de entrada lateral de los elementos
-function checkBoxes() {
-    const triggerBottom = window.innerHeight / 5 * 4
+let body = document.querySelector( 'body' )
+if(body.offsetWidth > 1023){
+    const boxes = document.querySelectorAll('.box')
 
-    boxes.forEach(box => {
-        const boxTop = box.getBoundingClientRect().top
-
-        if(boxTop < triggerBottom) {
-            box.classList.add('show')
-        } /*else {
-            box.classList.remove('show')
-        }*/
+    window.addEventListener('scroll', ()=>{
+        const triggerBottom = window.innerHeight / 5 * 6
+        boxes.forEach(box => {
+            const boxTop = box.getBoundingClientRect().top
+            if(boxTop < triggerBottom) {
+                box.classList.add('show')
+            }
+        })
     })
+}else{
+    setTimeout(()=>{
+    const boxes = document.querySelectorAll('.box')
+    boxes.forEach((box)=>{
+        box.classList.add('show')
+        })
+    },1000)
 }
 
 //Paneles Categorias
