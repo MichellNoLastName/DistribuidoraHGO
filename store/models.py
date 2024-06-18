@@ -5,7 +5,7 @@ from website.models import Usuarios
 
 # Create your models here.
 class Almacenes(models.Model):
-    IdAlmacen = models.CharField(db_index=True,unique=True,max_length=10,null=False)
+    IdAlmacen = models.CharField(db_index=True,unique=True,max_length=10)
     NombreAlmacen = models.CharField(max_length=50)
     EtiquetaAlmacen = models.CharField(max_length=15) #Leyenda o nombre corto
     SubAlmacen = models.CharField(max_length=10)
@@ -37,75 +37,24 @@ class Almacenes(models.Model):
         return f'{self.NombreAlmacen} ({self.IdAlmacen})'
 
 
-
-class MarcasArticulos(models.Model):
-    IdCategoria = models.CharField(max_length=8,db_index=True)
-    IdMarca = models.IntegerField(db_index=True,unique=True)
-    DescripcionMarca = models.CharField(max_length=50)
-    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaMarcasArticulos',on_delete=models.PROTECT,db_column="UsuarioAlta",blank=True)
-    FechaAlta = models.DateField(auto_now_add=True)
-    HoraAlta = models.TimeField(auto_now_add=True)
-    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioMarcasArticulos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True)
-    FechaCambio = models.DateField(auto_now=True,null=True)
-    HoraCambio = models.TimeField(auto_now=True,null=True)
-    EstadoLogico = models.IntegerField()
-    Version = models.IntegerField()
-
-    class Meta:
-        db_table = "MarcasArticulos"
-        ordering = ('-IdMarca',)
-        verbose_name = "MarcaArticulos"
-        verbose_name_plural = "MarcasArticulos"
-        index_together = (('IdCategoria','IdMarca'),)
-        unique_together = (('IdCategoria','IdMarca'),)
-
-    def __str__(self):
-        return f'{self.DescripcionMarca} ({self.IdMarca})'
-
-
-class PresentacionesArticulos(models.Model):
-    IdCategoria = models.CharField(max_length=8,db_index=True)
-    IdPresentacion = models.IntegerField(db_index=True,unique=True)
-    DescripcionPresentacion = models.CharField(max_length=50)
-    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaPresentacionesArticulos',on_delete=models.PROTECT,db_column="UsuarioAlta",blank=True)
-    FechaAlta = models.DateField(auto_now_add=True)
-    HoraAlta = models.TimeField(auto_now_add=True)
-    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioPresentacionesArticulos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True)
-    FechaCambio = models.DateField(auto_now=True,null=True)
-    HoraCambio = models.TimeField(auto_now=True,null=True)
-    EstadoLogico = models.IntegerField()
-    Version = models.IntegerField()
-
-    class Meta:
-        db_table = "PresentacionesArticulos"
-        ordering = ('-IdPresentacion',)
-        verbose_name = 'PresentacionArticulos'
-        verbose_name_plural = 'PresentacionesArticulos'
-        index_together = (('IdCategoria','IdPresentacion'),)
-        unique_together = (('IdCategoria','IdPresentacion'),)
-
-    def __str__(self):
-        return f'{self.DescripcionPresentacion} ({self.IdPresentacion})'
-
-
 class ProductosSAT(models.Model):
-    IdProductoSAT = models.IntegerField(primary_key=True,null=False,blank=False,unique=True)
-    DescripcionProductoSAT = models.CharField(max_length=256)
+    IdProductoSAT = models.IntegerField(db_index=True,unique=True,primary_key=True)
+    DescripcionProductoSAT = models.CharField(max_length=256,default='')
     IncluirIVATrasladoProductoSAT = models.CharField(max_length=1,default='O') #Opcional
     IncluirIEPSRTrasladoProductoSAT = models.CharField(max_length=1,default='N') #No
-    ComplementoProductoSAT = models.IntegerField(null=True)
+    ComplementoProductoSAT = models.IntegerField(null=True,blank=True)
     IncluidComplementoProductoSAT = models.CharField(max_length=1,default='N') #No
     CondicionMaterialPeligrosoProductoSAT = models.CharField(max_length=1,default='0') #0
-    ClaveMaterialPeligrosoProductoSAT = models.CharField(max_length=5,null=True)
+    ClaveMaterialPeligrosoProductoSAT = models.CharField(max_length=5,null=True,blank=True)
     ValorSistema = models.CharField(max_length=1,default='S') #Si
-    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaProductosSAT',on_delete=models.PROTECT,db_column="UsuarioAlta",blank=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaProductosSAT',on_delete=models.PROTECT,db_column="UsuarioAlta",default='')
     FechaAlta = models.DateField(auto_now_add=True)
     HoraAlta = models.TimeField(auto_now_add=True)
-    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioProductosSAT',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioProductosSAT',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
     FechaCambio = models.DateField(auto_now=True,null=True)
     HoraCambio = models.TimeField(auto_now=True,null=True)
-    EstadoLogico = models.IntegerField()
-    Version = models.IntegerField()
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
 
     class Meta:
         db_table = "ProductosSAT"
@@ -117,7 +66,7 @@ class ProductosSAT(models.Model):
         return f'{self.DescripcionProductoSAT} ({self.IdProductoSAT})'
 
 class UnidadesSAT(models.Model):
-    IdUnidadSAT = models.CharField(max_length=3,primary_key=True,null=False,blank=False,unique=True)
+    IdUnidadSAT = models.CharField(max_length=3,db_index=True,unique=True,primary_key=True)
     NombreUnidadSAT = models.CharField(max_length=128)
     DescripcionUnidadSAT = models.CharField(max_length=640)
     NotaUnidadSAT = models.CharField(max_length=256)
@@ -143,16 +92,16 @@ class UnidadesSAT(models.Model):
 
 
 class CategoriasArticulos(models.Model):
-    IdCategoria = models.CharField(max_length=8,db_index=True,null=False,blank=False,unique=True)
-    IdElementoCategoria = models.AutoField(primary_key=10)
+    IdCategoria = models.CharField(max_length=8,db_index=True,unique=True)
+    IdElementoCategoria = models.AutoField(primary_key=True)
     DescripcionCategoria = models.CharField(max_length=50)
-    SubCategoria = models.CharField(max_length=8,null=True)
-    CondicionExistenciaCategoria = models.CharField(max_length=1)
+    SubCategoria = models.CharField(max_length=8,null=True,blank=True)
+    CondicionExistenciaCategoria = models.CharField(max_length=1) #Valida si existe o no en almacen (S/N)
     SlugCategoria = models.SlugField(max_length=200,unique=True,blank=True)
-    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaCategorias',on_delete=models.PROTECT,db_column="UsuarioAlta",blank=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaCategorias',on_delete=models.PROTECT,db_column="UsuarioAlta")
     FechaAlta = models.DateField(auto_now_add=True)
     HoraAlta = models.TimeField(auto_now_add=True)
-    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioCategorias',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioCategorias',on_delete=models.PROTECT,db_column="UsuarioCambio",blank=True,null=True)
     FechaCambio = models.DateField(auto_now=True,null=True)
     HoraCambio = models.TimeField(auto_now=True,null=True)
     EstadoLogico = models.IntegerField()
@@ -171,24 +120,133 @@ class CategoriasArticulos(models.Model):
         super(CategoriasArticulos,self).save(*args,**kwargs)
 
     def __str__(self):
-        return f'{self.NombreCategoria} ({self.IdCategoria})';
+        return f'{self.DescripcionCategoria} ({self.IdCategoria})';
 
     def get_absolute_url(self):
         return reverse("store:list_products_by_category",args=[self.SlugCategoria])
 
+class Catalogos(models.Model):
+    IdCatalogo = models.IntegerField(db_index=True)
+    ElementoCatalogo = models.AutoField(primary_key=True,db_index=True,unique=True)
+    ClaseCatalogo = models.CharField(max_length=15) #Clasifica elementos del catalogo basados en la necesidas de la aplicacion
+    PorDefectoCatalogo = models.CharField(max_length=1) # Si/No
+    ValorSistema = models.CharField(max_length=1) #Si/No
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaCatalogos',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioCatalogos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField()
+    Version = models.IntegerField()
+
+    class Meta:
+        db_table = 'Catalogos'
+        ordering = ('-IdCatalogo',)
+        verbose_name = 'Catalogo'
+        verbose_name_plural = 'Catalogos'
+        unique_together = (('IdCatalogo','ElementoCatalogo'),)
+        index_together = (('IdCatalogo','ElementoCatalogo'),)
+
+    def __str__(self):
+        return f'{self.ClaseCatalogo} ({self.IdCatalogo})'
+
+class CondicionesPago(models.Model):
+    """Los términos o condiciones de pago se mostrarán como:
+    CONTADO
+    30 DÍAS DE CRÉDITO
+    2% POR PRONTO PAGO Y 10 DÍAS DE CRÉDITO, 30 DÍAS DE CRÉDITO
+    COD (Cobrar o devolver)
+    PAGAR AL RECIBIR
+    CHEQUE POSTFECHADO
+    CRÉDITO
+    La notación americana representa el crédito comercial como:
+    NET 30 DAYS
+    2% 10, NET 30 DAYS
+    El primero indica que el pago total se espera dentro de los 30 días siguientes a la entrega de la mercancía o servicios.
+    El segundo indica que el Comprador puede aplicar un descuento del 2% sobre el pago total si este se realiza dentro de los 10 días siguientes a la entrega de la mercancía o servicio,
+    o el pago total si lo realiza dentro de los 30 días.
+"""
+    IdCondicionPago = models.IntegerField(db_index=True,primary_key=True,unique=True)
+    DescripcionCondicionPago = models.CharField(max_length=60)
+    DiasCreditoCondicionPago = models.IntegerField() #Si el valor es CEROm defina una condicion de pago de contado
+    DescuentoProntoPagoCondicionPago = models.DecimalField(max_digits=7,decimal_places=2) #Aplica a todos los productos siempre y cuando se cumpla la condicion de pronto pago
+    DiasProntoPagoCondicionPago = models.IntegerField()  #Dias maximos en los que aplica el descuento de pronto pago mayor a CERO, este plazo debe ser menor que el plazo a credito
+    ValorSistema = models.CharField(max_length=1) #S:Si/N:No
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaCondicionesPago',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioCondicionesPago',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
+
+
+
+
+class Proveedores(models.Model):
+    IdProveedor = models.IntegerField(db_index=True,unique=True)
+    RazonSocialProveedor = models.CharField(max_length=128)
+    TipoSociedadProveedor = models.ForeignKey(Catalogos,to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='TipoSociedadProveedor',null=True,blank=True) #IdCatalgo = 049
+    ApellidoPaternoProveedor = models.CharField(max_length=30)
+    ApellidoMaternoProveedor = models.CharField(max_length=30)
+    NombreProveedor = models.CharField(max_length=30)
+    DenominacionProveedor = models.CharField(max_length=30) #Nombre comercial del proveedor
+    TipoProveedor = models.ForeignKey(Catalogos,related_name='tiposProveedores',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='TipoProveedor',null=True,blank=True) #IdCatalogo = 039
+    GiroProveedor = models.ForeignKey(Catalogos,related_name='girosProveedores',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='GiroProveedor') #IdCatalogo = 010
+    SectorProveedor = models.ForeignKey(Catalogos,related_name='sectoresProveedores',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='SectorProveedor') #IdCatalogo = 009
+    ProcedenciaProveedor = models.CharField(max_length=1) #N:Nacional/E:Extranjero/G:Global
+    ClaseProveedor = models.CharField(max_length=1) #F:Fisica/M:Moral
+    RFCProveedor = models.CharField(max_length=13)
+    CURProveedor = models.CharField(max_length=18)
+    FechaAltaProveedor = models.DateField()
+    FechaBajaProveedor = models.DateField(null=True,blank=True)
+    OpinionSATProveedor = models.CharField(max_length=1) #0:Negativa,1:Positiva
+    FechaOpinionSATProveedor = models.DateField(null=True,blank=True) #Fecha ultima de revision del cumplimientos de las obligaciones fiscales
+    ObservacionesProveedor = models.CharField(max_length=256)
+    CondicionPagoProveedor = models.ForeignKey(CondicionesPago,related_name='condicionesPagoProveedores',to_field='IdCondicionPago',on_delete=models.PROTECT,db_column='CondicionPagoProveedor')
+    FechaAperturaProveedor = models.DateField(null=True,blank=True) #Fecha de apertura de linea de credito
+    LimiteCreditoProveedor = models.DecimalField(max_digits=22,decimal_places=6)
+    PorcentajeAnticipoProveedor = models.DecimalField(max_digits=5,decimal_places=2)
+    DescuentoProveedor = models.DecimalField(max_digits=15,decimal_places=6) #Descuento Comercial
+    PlazoEntrega = models.IntegerField()
+    CriterioPagoProveedor = models.CharField(max_length=1)
+    DivisaProveedor = models.ForeignKey('Divisas',related_name='divisasProveedores',to_field='IdDivisa',on_delete=models.PROTECT,db_column='DivisaProveedor')
+    NumeroCuentaProveedor = models.IntegerField()
+    IdElementoProveedor = models.AutoField(primary_key=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaProveedores',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioProveedores',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ('-IdProveedor',)
+        verbose_name = 'Proveedor'
+        verbose_name_plural = 'Proveedores'
+        db_table = 'Proveedores'
+
+    def __str__(self):
+        return f'{self.DenominacionProveedor} ({self.IdProveedor})'
+
+
 class Articulos(models.Model):
-    IdCategoria = models.ForeignKey(CategoriasArticulos,to_field = 'IdCategoria',related_name="categoriasArticulos",on_delete=models.PROTECT,db_index=True,db_column="IdCategoria",max_length=8)
+    IdCategoria = models.ForeignKey(CategoriasArticulos,to_field = 'IdCategoria',related_name="categoriasArticulos",on_delete=models.PROTECT,db_index=True,db_column="IdCategoria")
     IdArticulo = models.IntegerField(db_index=True,unique=True)
     NombreArticulo = models.CharField(max_length=256)
     EtiquetaArticulo = models.CharField(max_length=15)
     UPCArticulo = models.CharField(max_length=13,null=True)
-    IdProductoSATArticulo = models.ForeignKey(ProductosSAT,to_field = 'IdProductoSAT',related_name="productosSAT",on_delete=models.PROTECT,max_length=8,db_column="IdProductoSATArticulo")
+    IdProductoSATArticulo = models.ForeignKey(ProductosSAT,to_field = 'IdProductoSAT',related_name="productosSAT",on_delete=models.PROTECT,db_column="IdProductoSATArticulo")
     DescripcionArticulo = models.CharField(max_length=128)
-    MarcaArticulo = models.ForeignKey(MarcasArticulos,to_field='IdMarca',related_name="marcas",on_delete=models.PROTECT,max_length=3,null=True,db_column="MarcaArticulo")
+    MarcaArticulo = models.ForeignKey('MarcasArticulos',to_field='IdMarca',related_name="marcas",on_delete=models.PROTECT,max_length=3,null=True,db_column="MarcaArticulo")
     ModeloArticulo = models.CharField(max_length=40)
     MedidaArticulo = models.CharField(max_length=5)
     UnidadMedidaArticulo = models.IntegerField(null=True)
-    PresentacionArticulo = models.ForeignKey(PresentacionesArticulos,to_field='IdPresentacion',related_name="presentaciones",on_delete=models.PROTECT,max_length=3,null=True,db_column="PresentacionArticulo")
+    PresentacionArticulo = models.ForeignKey('PresentacionesArticulos',to_field='IdPresentacion',related_name="presentaciones",on_delete=models.PROTECT,null=True,db_column="PresentacionArticulo")
     FabricanteArticulo = models.IntegerField(null=True)
     ClaseArticulo = models.IntegerField()
     ProveedorPrimarioArticulo = models.IntegerField() #Pendiente tabla
@@ -226,10 +284,10 @@ class Articulos(models.Model):
     OperacionSATArticulo = models.IntegerField(null=True)
     IdElementoArticulo = models.AutoField(primary_key=True)
     SlugArticulo = models.SlugField(max_length=200,unique=True,blank=True)
-    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaArticulos',on_delete=models.PROTECT,db_column="UsuarioAlta",blank=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaArticulos',on_delete=models.PROTECT,db_column="UsuarioAlta")
     FechaAlta = models.DateField(auto_now_add=True)
     HoraAlta = models.TimeField(auto_now_add=True)
-    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioArticulos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioArticulos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
     FechaCambio = models.DateField(auto_now=True,null=True)
     HoraCambio = models.TimeField(auto_now=True,null=True)
     EstadoLogico = models.IntegerField()
@@ -310,20 +368,66 @@ class CostosArticulos(models.Model):
     def __str__(self):
         return f'{self.IdArticulo} ({self.CostoUnitario})'
 
-
 class MarcasCategorias(models.Model):
-    IdCategoria = models.ForeignKey(CategoriasArticulos,on_delete=models.CASCADE)
-    IdMarca = models.ForeignKey(MarcasArticulos,on_delete=models.CASCADE)
+    IdCategoria = models.ForeignKey(CategoriasArticulos,on_delete=models.PROTECT,to_field='IdCategoria',db_column='IdCategoria')
+    IdMarca = models.ForeignKey('MarcasArticulos',on_delete=models.PROTECT,to_field='IdMarca',db_column='IdMarca')
 
     class Meta:
-        unique_together = (('IdCategoria','IdMarca'),)
+        db_table = 'MarcasCategorias'
+
+
+class MarcasArticulos(models.Model):
+    IdCategoria = models.ManyToManyField(CategoriasArticulos,through=MarcasCategorias,db_index=True)
+    IdMarca = models.IntegerField(db_index=True,unique=True)
+    DescripcionMarca = models.CharField(max_length=50)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaMarcasArticulos',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioMarcasArticulos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField()
+    Version = models.IntegerField()
+
+    class Meta:
+        db_table = "MarcasArticulos"
+        ordering = ('-IdMarca',)
+        verbose_name = "MarcaArticulos"
+        verbose_name_plural = "MarcasArticulos"
+
+    def __str__(self):
+        return f'{self.DescripcionMarca} ({self.IdMarca})'
+
 
 class PresentacionesCategorias(models.Model):
-    IdCategoria = models.ForeignKey(CategoriasArticulos,on_delete=models.CASCADE)
-    IdPresentacion = models.ForeignKey(PresentacionesArticulos,on_delete=models.CASCADE)
+    IdCategoria = models.ForeignKey(CategoriasArticulos,on_delete=models.PROTECT,to_field='IdCategoria',db_column='IdCategoria')
+    IdPresentacion = models.ForeignKey('PresentacionesArticulos',on_delete=models.PROTECT,to_field='IdPresentacion',db_column='IdPresentacion')
 
     class Meta:
-        unique_together = (('IdCategoria','IdPresentacion'),)
+        db_table = 'PresentacionesCategorias'
+
+
+class PresentacionesArticulos(models.Model):
+    IdCategoria = models.ManyToManyField(CategoriasArticulos,through=PresentacionesCategorias,db_index=True)
+    IdPresentacion = models.IntegerField(db_index=True,unique=True)
+    DescripcionPresentacion = models.CharField(max_length=50)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaPresentacionesArticulos',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioPresentacionesArticulos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField()
+    Version = models.IntegerField()
+
+    class Meta:
+        db_table = "PresentacionesArticulos"
+        ordering = ('-IdPresentacion',)
+        verbose_name = 'PresentacionArticulos'
+        verbose_name_plural = 'PresentacionesArticulos'
+
+    def __str__(self):
+        return f'{self.DescripcionPresentacion} ({self.IdPresentacion})'
 
 class AlmacenArticulos(models.Model):
     IdAlmacen = models.ForeignKey(Almacenes,to_field='IdAlmacen',related_name="almacenesArticulos",on_delete=models.PROTECT,db_index=True,max_length=10,db_column="IdAlmacen")
@@ -400,3 +504,50 @@ class AlmacenArticuloExistencias(models.Model):
         verbose_name_plural = 'AlmacenArticuloExistencias'
         index_together = (('IdAlmacen','IdCategoria','IdArticulo','IdEstadoExistencia','EjercicioExistenciasArticulo'),)
         unique_together = (('IdAlmacen','IdCategoria','IdArticulo','IdEstadoExistencia','EjercicioExistenciasArticulo'),)
+
+
+class Clientes(models.Model):
+    IdCliente = models.IntegerField(db_index=True,unique=True)
+    RazonSocialCliente = models.CharField(max_length=128)
+    TipoSociedadCliente = models.ForeignKey(Catalogos,to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='TipoSociedadCliente',null=True,blank=True) #IdCatalgo = 049
+    ApellidoPaternoCliente = models.CharField(max_length=30)
+    ApellidoPaternoCliente = models.CharField(max_length=30)
+    NombreCliente = models.CharField(max_length=30)
+    DenominacionCliente = models.CharField(max_length=30)
+    TipoCliente = models.ForeignKey(Catalogos,related_name='tiposClientes',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='TipoCliente') #IdCatalgo = 024
+    GiroCliente = models.ForeignKey(Catalogos,related_name='girosClientes',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='GiroCliente') #IdCatalgo = 010
+    SectorCliente = models.ForeignKey(Catalogos,related_name='sectoresClientes',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='SectorCliente') #IdCatalgo = 009
+    ProcedenciaCliente = models.CharField(max_length=1) #N:Nacional/E:Extranjero/G:Global
+    ClaseCliente = models.CharField(max_length=1) #F:Fisica/M:Moral
+    RFCCliente = models.CharField(max_length=13)
+    CURPCliente = models.CharField(max_length=18)
+    ObservacionesCliente = models.CharField(max_length=256)
+    FechaAltaCliente = models.DateField()
+    FechaBajaCliente = models.DateField(null=True,blank=True)
+    CondicionPagoCliente = models.ForeignKey(CondicionesPago,related_name='condicionesPagoClientes',to_field='IdCondicionPago',on_delete=models.PROTECT,db_column='CondicionPagoCliente')
+    FechaAperturaCliente = models.DateField(null=True,blank=True) #Fecha de apertura de linea de credito
+    LimiteCreditoCliente = models.DecimalField(max_digits=22,decimal_places=6)
+    PorcentajeAnticipoCliente = models.DecimalField(max_digits=5,decimal_places=2)
+    DescuentoCliente = models.DecimalField(max_digits=15,decimal_places=6) #Descuento Comercial
+    PlazoEntrega = models.IntegerField()
+    CriterioPagoCliente = models.CharField(max_length=1)
+    DivisaCliente = models.ForeignKey('Divisas',related_name='divisasClientes',to_field='IdDivisa',on_delete=models.PROTECT,db_column='DivisaCliente')
+    NumeroCuentaCliente = models.IntegerField()
+    IdElementoCliente = models.AutoField(primary_key=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaClientes',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioClientes',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'Clientes'
+        ordering = ('-IdCliente',)
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'
+
+    def __str__(self):
+        return f'{self.DenominacionCliente} ({self.IdCliente})'

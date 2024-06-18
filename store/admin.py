@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Almacenes,CategoriasArticulos,Articulos,AlmacenArticulos,AlmacenArticuloExistencias,MarcasArticulos,PresentacionesArticulos
+from .models import Almacenes,CategoriasArticulos,Articulos,AlmacenArticulos,AlmacenArticuloExistencias,MarcasArticulos,MarcasCategorias,PresentacionesArticulos,PresentacionesCategorias
 
 # Register your models here.
 
@@ -9,4 +9,6 @@ admin.site.register(Articulos)
 admin.site.register(AlmacenArticulos)
 admin.site.register(AlmacenArticuloExistencias)
 admin.site.register(MarcasArticulos)
+admin.site.register(MarcasCategorias)
 admin.site.register(PresentacionesArticulos)
+admin.site.register(PresentacionesCategorias)
