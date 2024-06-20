@@ -182,6 +182,14 @@ class CondicionesPago(models.Model):
     EstadoLogico = models.IntegerField(default=1)
     Version = models.IntegerField(default=0)
 
+    class Meta:
+        db_table = 'CondicionesPago'
+        ordering = ('-IdCondicionPago',)
+        verbose_name = 'CondicionPago'
+        verbose_name_plural = 'CondicionesPago'
+
+    def __str__(self):
+        return f'{self.DescripcionCondicionPago} ({self.IdCondicionPago})'
 
 
 
@@ -236,27 +244,28 @@ class Proveedores(models.Model):
 
 class Articulos(models.Model):
     IdCategoria = models.ForeignKey(CategoriasArticulos,to_field = 'IdCategoria',related_name="categoriasArticulos",on_delete=models.PROTECT,db_index=True,db_column="IdCategoria")
-    IdArticulo = models.IntegerField(db_index=True,unique=True)
+    IdArticulo = models.IntegerField(db_index=True,unique=True) #SKU (Stock Keeping Unit)
     NombreArticulo = models.CharField(max_length=256)
     EtiquetaArticulo = models.CharField(max_length=15)
-    UPCArticulo = models.CharField(max_length=13,null=True)
+    UPCArticulo = models.CharField(max_length=13,null=True,blank=True)
     IdProductoSATArticulo = models.ForeignKey(ProductosSAT,to_field = 'IdProductoSAT',related_name="productosSAT",on_delete=models.PROTECT,db_column="IdProductoSATArticulo")
     DescripcionArticulo = models.CharField(max_length=128)
-    MarcaArticulo = models.ForeignKey('MarcasArticulos',to_field='IdMarca',related_name="marcas",on_delete=models.PROTECT,max_length=3,null=True,db_column="MarcaArticulo")
+    MarcaArticulo = models.ForeignKey('MarcasArticulos',to_field='IdMarca',related_name="marcas",on_delete=models.PROTECT,db_column="MarcaArticulo",null=True,blank=True)
     ModeloArticulo = models.CharField(max_length=40)
     MedidaArticulo = models.CharField(max_length=5)
-    UnidadMedidaArticulo = models.IntegerField(null=True)
-    PresentacionArticulo = models.ForeignKey('PresentacionesArticulos',to_field='IdPresentacion',related_name="presentaciones",on_delete=models.PROTECT,null=True,db_column="PresentacionArticulo")
-    FabricanteArticulo = models.IntegerField(null=True)
-    ClaseArticulo = models.IntegerField()
-    ProveedorPrimarioArticulo = models.IntegerField() #Pendiente tabla
+    UnidadMedidaArticulo = models.ForeignKey(Catalogos,related_name='unidadesMedidasArticulos',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='UnidadMedidaArticulo',null=True,blank=True) #IdCatalogo = 017
+    PresentacionArticulo = models.ForeignKey('PresentacionesArticulos',to_field='IdPresentacion',related_name="presentaciones",on_delete=models.PROTECT,db_column="PresentacionArticulo",null=True,blank=True)
+    FabricanteArticulo = models.ForeignKey(Catalogos,related_name='fabricantesArticulos',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='FabricanteArticulo',null=True,blank=True) #IdCatalogo = 018
+    ClaseArticulo = models.ForeignKey(Catalogos,related_name='clasesArticulos',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='ClaseArticulo',null=True,blank=True) #IdCatalogo = 017
+    ProveedorPrimarioArticulo = models.ForeignKey(Proveedores,related_name='proveedoresArticulos',to_field='IdProveedor',on_delete=models.PROTECT,db_column='ProveedorPrimarioArticulo')
     CotizacionesArticulo = models.IntegerField()
-    ProcedenciaArticulo = models.CharField(max_length=1)
+    ProcedenciaArticulo = models.CharField(max_length=1) #N:Nacional E:Extranjero
     ArancelArticulo = models.DecimalField(max_digits=7,decimal_places=2)
     MargenArticulo = models.DecimalField(max_digits=11,decimal_places=4)
-    UnidadExistenciaArticulo = models.IntegerField()
-    UnidadesEntradaArticulo = models.IntegerField()
-    UnidadesSalidaArticulo = models.IntegerField()
+    UnidadExistenciaArticulo = models.ForeignKey(Catalogos,related_name='unidadesExisteniciasArticulos',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='UnidadExistenciaArticulo') #IdCatalogo = 016
+    UnidadesEntradaArticulo = models.ForeignKey(Catalogos,related_name='unidadesEntradasArticulos',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='UnidadesEntradaArticulo') #IdCatalogo = 016
+    UnidadesSalidaArticulo = models.ForeignKey(Catalogos,related_name='unidadesSalidasArticulos',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='UnidadesSalidaArticulo') #IdCatalogo = 016
+    UnidadEmbalajeArticulo = models.ForeignKey(Catalogos,related_name='unidadesEmbalajesArticulos',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='UnidadEmbalajeArticulo',default='') #IdCatalogo = 016
     IdUnidadSATArticulo = models.ForeignKey(UnidadesSAT,to_field='IdUnidadSAT',related_name="unidadesSAT",on_delete=models.PROTECT,max_length=3,db_column="IdUnidadSATArticulo")
     FactorEntradaArticulo = models.DecimalField(max_digits=16,decimal_places=5)
     FactorSalidaArticulo = models.DecimalField(max_digits=16,decimal_places=5)
@@ -281,7 +290,7 @@ class Articulos(models.Model):
     Garantia2Articulo = models.IntegerField()
     CondicionReemplazoArticulo = models.CharField(max_length=1)
     CaducidadArticulo = models.DateField()
-    OperacionSATArticulo = models.IntegerField(null=True)
+    OperacionSATArticulo = models.ForeignKey(Catalogos,related_name='operacionesSATArticulos',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='OperacionSATArticulo',null=True,blank=True) #IdCatalogo = 041
     IdElementoArticulo = models.AutoField(primary_key=True)
     SlugArticulo = models.SlugField(max_length=200,unique=True,blank=True)
     UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaArticulos',on_delete=models.PROTECT,db_column="UsuarioAlta")
@@ -290,8 +299,8 @@ class Articulos(models.Model):
     UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioArticulos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
     FechaCambio = models.DateField(auto_now=True,null=True)
     HoraCambio = models.TimeField(auto_now=True,null=True)
-    EstadoLogico = models.IntegerField()
-    Version = models.IntegerField()
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
 
     class Meta:
         db_table = "Articulos"
