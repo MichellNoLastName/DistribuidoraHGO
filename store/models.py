@@ -128,17 +128,18 @@ class CategoriasArticulos(models.Model):
 class Catalogos(models.Model):
     IdCatalogo = models.IntegerField(db_index=True)
     ElementoCatalogo = models.AutoField(primary_key=True,db_index=True,unique=True)
-    ClaseCatalogo = models.CharField(max_length=15) #Clasifica elementos del catalogo basados en la necesidas de la aplicacion
-    PorDefectoCatalogo = models.CharField(max_length=1) # Si/No
-    ValorSistema = models.CharField(max_length=1) #Si/No
+    DescripcionCatalogo = models.CharField(max_length=128,default="")
+    ClaseCatalogo = models.CharField(max_length=15, default = "") #Clasifica elementos del catalogo basados en la necesidas de la aplicacion
+    PorDefectoCatalogo = models.CharField(max_length=1, default = "N") # Si/No
+    ValorSistema = models.CharField(max_length=1, default = "N") #Si/No
     UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaCatalogos',on_delete=models.PROTECT,db_column="UsuarioAlta")
     FechaAlta = models.DateField(auto_now_add=True)
     HoraAlta = models.TimeField(auto_now_add=True)
     UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioCatalogos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
     FechaCambio = models.DateField(auto_now=True,null=True)
     HoraCambio = models.TimeField(auto_now=True,null=True)
-    EstadoLogico = models.IntegerField()
-    Version = models.IntegerField()
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'Catalogos'
@@ -277,8 +278,8 @@ class Articulos(models.Model):
     FondoArticulo = models.DecimalField(max_digits=10,decimal_places=3)
     PesoArticulo = models.DecimalField(max_digits=14,decimal_places=3)
     ImagenArticulo = models.ImageField(upload_to='productos/%Y/%m/%d', null=True,blank=True)
-    FormatoImagenArticulo = models.CharField(max_length=50,null=True)
-    NombreImagenArticulo = models.CharField(max_length=128,null=True)
+    FormatoImagenArticulo = models.CharField(max_length=50,null=True,blank=True)
+    NombreImagenArticulo = models.CharField(max_length=128,null=True,blank=True)
     CondicionReordenArticulo = models.CharField(max_length=1)
     CondicionFraccionesArticulo = models.CharField(max_length=1)
     CondicionExistenciaNegativaArticulo = models.CharField(max_length=1)

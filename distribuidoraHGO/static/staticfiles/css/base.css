@@ -1,0 +1,264 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+.hidden{
+    overflow: hidden;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.formSearchMovil{
+    display: none;
+}
+
+.btnSearchMovil{
+    display: inline;
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+    font-size: 15px;
+    height: 40px;
+    width: 40px;
+    transition: transform 0.8s ease;
+}
+.formSearchMovil .inputSearchMovil {
+    margin-top: 4%;
+    background-color: #fff;
+    display: inline;
+    border: 0;
+    font-size: 14px;
+    height: 40px;
+    width: 0px;
+    transition: width 0.8s ease;
+  }
+
+.btnSearchMovil:focus,.inputSearchMovil:focus{
+    outline:none;
+}
+
+.formSearchMovil.active .inputSearchMovil{
+    width: 130px;
+}
+
+.formSearchMovil.active .btnSearchMovil{
+    transform: translateX(1%);
+}
+
+
+#spinner-container {
+    display: flex;
+    height: 100vh;
+}
+
+#navbar{
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,177,255,1) 100%);
+    font-weight: 700;
+    font-size: 1.4cap;
+}
+
+
+.icono-navbar{
+    width:120px;
+    height:72px;
+}
+
+.navbar-toggler {
+    background-color: white !important; /* Cambia el color de fondo del botón */
+    color: black !important; /* Cambia el color del texto del botón */
+    /* Otros estilos que desees aplicar */
+}
+
+#form_navbarSearch{
+    width: 18em;
+    font-size: 17px;
+}
+#btn_navbarSearch{
+    border: none;
+    color: black;
+}
+
+/*Botones del segundo navbar*/
+#navSecond:hover{
+    background-color: #343a40;
+    color: white !important;
+}
+/*Icono de busqueda rapida*/
+.fa-searchengin{
+    font-size: 1.5em;
+}
+
+/*Icono de Whatsapp*/
+.fa-whatsapp{
+    font-size: 1.8em;
+    color:green;
+    background-color: transparent;
+    border-radius: 100% !important;
+}
+/*Icono de Facebook*/
+.fa-facebook{
+    font-size: 1.8em;
+    border-radius:100% !important;
+    background-color: white;
+    color:#3b5998;
+}
+
+#btn_navbarSearch:hover {
+    background-color: #343a40; /* Cambia el color de fondo cuando se pasa el mouse */
+    color: #fff; /* Cambia el color del texto cuando se pasa el mouse */
+    /* Otros estilos que desees aplicar al pasar el mouse sobre el botón */
+  }
+
+/*footer*/
+footer{
+    font-size: 13px;
+    box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+}
+
+.img-footer{
+    width: 15em;
+    height: 10em;
+}
+
+.fa-footer{
+    color:#0098db !important;
+    margin-top: 1em;
+}
+
+.footer_subtitles{
+    font-weight: bold;
+    color:#0098db;
+}
+
+.footer-top{
+    display: none !important;
+
+}
+
+/*Medias querys*/
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .icono-navbar{
+        width:85px;
+        height:48px;
+    }
+
+    .navbar{
+        font-size: 13px;
+    }
+
+
+    #form_navbarSearch{
+        font-size: 13px;
+    }
+
+    footer .footer-top{
+        display: inline-block !important;
+    }
+    footer .contact-footer-left{
+        display: none;
+    }
+
+    footer .footer-right{
+        border: none;
+    }
+
+    .img-footer{
+        width: 37% !important;
+        height: 80% !important;
+    }
+
+    .footer_subtitles{
+        text-align: start;
+    }
+
+    .footer_text{
+        text-align: justify;
+    }
+
+    footer .fa-whatsapp{
+        font-size: 1.4em;
+    }
+
+    footer .fa-facebook{
+        font-size: 1.4em;
+    }
+
+    footer{
+        font-size: 13px;
+        box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+        -webkit-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+        -moz-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+    }
+
+    footer .footer_subtitles{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .navbar{
+        font-size: 10px !important;
+    }
+
+    #form_navbarSearch{
+        width: 18em;
+        height: 2em;
+        font-size: 10px;
+    }
+
+    #btn_navbarSearch{
+        font-size: 10px;
+    }
+
+    .icono-navbar{
+        width:50px;
+        height:24px;
+    }
+
+    footer .footer-top{
+        display: inline-block !important;
+    }
+    footer .contact-footer-left{
+        display: none;
+    }
+
+    footer .footer-right{
+        border: none;
+    }
+
+    .img-footer{
+        width: 37% !important;
+        height: 80% !important;
+    }
+
+    .footer{
+        font-size: 6px;
+    }
+
+    .footer .footer_subtitles{
+        font-size: 9px;
+        text-align: start;
+    }
+
+    footer .fa-footer{
+        font-size: 9px;
+    }
+
+    footer .fa-whatsapp{
+        font-size: 16px;
+    }
+
+    footer .fa-facebook{
+        font-size: 16px;
+    }
+
+
+}
