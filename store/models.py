@@ -9,8 +9,8 @@ class Almacenes(models.Model):
     NombreAlmacen = models.CharField(max_length=50)
     EtiquetaAlmacen = models.CharField(max_length=15) #Leyenda o nombre corto
     SubAlmacen = models.CharField(max_length=10)
-    ResponsableAlmacen = models.CharField(max_length=10) #Usuario
-    SupervisorAlmacen = models.CharField(max_length=10,null=True) #Usuario
+    ResponsableAlmacen = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='responsablesAlmacenes',on_delete=models.PROTECT,db_column="ResponsableAlmacen") #Usuario
+    SupervisorAlmacen = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='supervisoresAlmacenes',on_delete=models.PROTECT,db_column="SupervisorAlmacen",default = None) #Usuario
     SuperficieAlmacen = models.DecimalField(max_digits=13,decimal_places=2)
     FechaAperturaAlmacen = models.DateField()
     FechaUltimoInventarioAlmacen = models.DateField()
@@ -18,10 +18,10 @@ class Almacenes(models.Model):
     FechaPenultimoInventarioAlmacen = models.DateField()
     HoraPenultimoInventarioAlmacen = models.TimeField()
     IdElementoAlmacen = models.AutoField(primary_key=True)
-    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaAlmacenes',on_delete=models.PROTECT,db_column="UsuarioAlta",blank=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioAltaAlmacenes',on_delete=models.PROTECT,db_column="UsuarioAlta")
     FechaAlta = models.DateField(auto_now_add=True)
     HoraAlta = models.TimeField(auto_now_add=True)
-    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioAlmacenes',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field = 'IdUsuario',related_name='usuarioCambioAlmacenes',on_delete=models.PROTECT,db_column="UsuarioCambio",blank=True,null=True)
     FechaCambio = models.DateField(auto_now=True,null=True)
     HoraCambio = models.TimeField(auto_now=True,null=True)
     EstadoLogico = models.IntegerField()
@@ -150,7 +150,62 @@ class Catalogos(models.Model):
         index_together = (('IdCatalogo','ElementoCatalogo'),)
 
     def __str__(self):
-        return f'{self.ClaseCatalogo} ({self.IdCatalogo})'
+        return f'{self.DescripcionCatalogo} ({self.IdCatalogo})'
+
+class Impuestos(models.Model):
+    IdImpuesto = models.IntegerField(db_index=True,primary_key=True,unique=True)
+    DescripcionImpuesto = models.CharField(max_length=60)
+    EtiquetaImpuesto = models.CharField(max_length=15)
+    ClaveSHCPImpuesto = models.ForeignKey(Catalogos,to_field='ElementoCatalogo',related_name='clavesSHCPImpuestos',on_delete=models.PROTECT,db_column='ClaveSHCPImpuesto') #032
+    ValorSistema = models.CharField(max_length=1,default='N')
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaImpuestos',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioImpuestos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'Impuesto'
+        ordering = ('-IdImpuesto',)
+        verbose_name = 'Impuesto'
+        verbose_name = 'Impuestos'
+
+    def __str__(self):
+        return f'{self.DescripcionImpuesto} ({self.IdImpuesto})'
+
+class ImpuestoTasas(models.Model):
+    IdImpuesto = models.ForeignKey(Impuestos,to_field='IdImpuesto',related_name='impuestosTasas',on_delete=models.PROTECT,db_column='IdImpuesto',db_index=True)
+    IdTasaImpuesto = models.IntegerField(db_index=True,unique=True)
+    TasaImpuesto = models.DecimalField(max_digits=11,decimal_places=4) #Porcentaje de impuesto a aplicar
+    EtiquetaImpuesto = models.CharField(max_length=15)
+    BaseCalculoImpuesto = models.CharField(max_length=1) #A:Importe Acumulado B:Importe Base
+    ClaseImpuesto = models.CharField(max_length=1) #R:Retenido (Se resta al total) T:Trasladado(Se suma al total)
+    OrdenImpuesto = models.IntegerField() #Determina el orden de aplicacion y presentacion del impuesto
+    TipoFactorSATImpuesto = models.CharField(max_length=1) #T:Tasa, C:Cuota, E:Exento
+    IdElementoTasaImpuesto = models.AutoField(primary_key=True)
+    ValorSistema = models.CharField(max_length=1,default='N')
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaImpuestoTasas',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioImpuestoTasas',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'ImpuestoTasas'
+        verbose_name = 'ImpuestoTasa'
+        verbose_name_plural = 'ImpuestoTasas'
+        ordering = ('-IdImpuesto',)
+        index_together = (('IdImpuesto','IdTasaImpuesto'),)
+        unique_together = (('IdImpuesto','IdTasaImpuesto'),)
+
+    def __str__(self):
+        return f'{self.EtiquetaImpuesto} ({self.TasaImpuesto})'
 
 class CondicionesPago(models.Model):
     """Los términos o condiciones de pago se mostrarán como:
@@ -328,18 +383,18 @@ class Divisas(models.Model):
     EtiquetaDivisa = models.CharField(max_length=15) #Nombre Corto (PESOS, DOLARES,ETC)
     SimboloDivisa = models.CharField(max_length=3) #$,etc
     BanderaDivisa = models.ImageField(upload_to='divisas/%Y/%m/%d', null=True,blank=True)
-    FormatoBanderaDivisa = models.CharField(max_length=50,null=True)
-    NombreBanderaDivisa = models.CharField(max_length=128,null=True)
-    PorDefectoDivisa = models.CharField(max_length=1)
+    FormatoBanderaDivisa = models.CharField(max_length=50,null=True,blank=True)
+    NombreBanderaDivisa = models.CharField(max_length=128,null=True,blank=True)
+    PorDefectoDivisa = models.CharField(max_length=1,default='N')
     ValorSistema = models.CharField(max_length=1,default='S') #Si
-    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaDivisas',on_delete=models.PROTECT,db_column="UsuarioAlta",blank=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaDivisas',on_delete=models.PROTECT,db_column="UsuarioAlta")
     FechaAlta = models.DateField(auto_now_add=True)
     HoraAlta = models.TimeField(auto_now_add=True)
-    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioDivisas',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioDivisas',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
     FechaCambio = models.DateField(auto_now=True,null=True)
     HoraCambio = models.TimeField(auto_now=True,null=True)
-    EstadoLogico = models.IntegerField()
-    Version = models.IntegerField()
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'Divisas'
@@ -348,7 +403,7 @@ class Divisas(models.Model):
         verbose_name_plural = 'Divisas'
 
     def __str__(self):
-        return f'{self.NombreDivisa} + ({self.IdDivisa})'
+        return f'{self.NombreDivisa} ({self.IdDivisa})'
 
 
 
@@ -561,3 +616,82 @@ class Clientes(models.Model):
 
     def __str__(self):
         return f'{self.DenominacionCliente} ({self.IdCliente})'
+
+class ListasPrecios(models.Model):
+    IdListaPrecio = models.IntegerField(db_index=True,primary_key=True,unique=True)
+    DescripcionListaPrecio = models.CharField(max_length=40)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaListasPrecios',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioListasPrecios',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'ListasPrecios'
+        ordering = ('-IdListaPrecio',)
+        verbose_name = 'ListaPrecio'
+        verbose_name_plural = 'ListasPrecios'
+    def __str__(self):
+        return f'{self.DescripcionListaPrecio} ({self.IdListaPrecio})'
+
+class ListaPreciosArticulos(models.Model):
+    IdListaPrecio = models.ForeignKey(ListasPrecios,to_field='IdListaPrecio',related_name='listasPreciosArticulos',on_delete=models.PROTECT,db_column='IdListaPrecio',db_index=True)
+    IdCategoria = models.ForeignKey(CategoriasArticulos,to_field='IdCategoria',related_name='categoriasListasPreciosArticulos',on_delete=models.PROTECT,db_column='IdCategoria',db_index=True)
+    IdArticulo = models.ForeignKey(Articulos,to_field='IdArticulo',related_name='articulosListasPreciosArticulos',on_delete=models.PROTECT,db_column='IdArticulo',db_index=True)
+    FechaInicioPrecio = models.DateField(db_index=True)
+    HoraInicioPrecio = models.TimeField(db_index=True)
+    PrecioArticulo = models.DecimalField(max_digits=22,decimal_places=6) #Precio Sin Impuestos
+    DivisaPrecioArticulo = models.ForeignKey(Divisas,to_field='IdDivisa',related_name='divisasListasPrecios',on_delete=models.PROTECT,db_column='DivisaPrecioArticulo')
+    IdElementoPrecioArticulo = models.AutoField(primary_key=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaListaPreciosArticulos',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioListaPreciosArticulos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'ListaPreciosArticulos'
+        ordering = ('-IdListaPrecio',)
+        verbose_name = 'ListaPreciosArticulos'
+        verbose_name_plural = 'ListasPreciosArticulos'
+        index_together = (('IdListaPrecio','IdCategoria','IdArticulo','FechaInicioPrecio',
+                           'HoraInicioPrecio'),)
+        unique_together = (('IdListaPrecio','IdCategoria','IdArticulo','FechaInicioPrecio',
+                           'HoraInicioPrecio'),)
+
+
+class ListaPreciosArticuloImpuestos(models.Model):
+    IdListaPrecio = models.ForeignKey(ListasPrecios,to_field='IdListaPrecio',related_name='listasPreciosArticulosImpuestos',on_delete=models.PROTECT,db_column='IdListaPrecio',db_index=True)
+    IdCategoria = models.ForeignKey(CategoriasArticulos,to_field='IdCategoria',related_name='categoriasListasPreciosArticuloImpuestos',on_delete=models.PROTECT,db_column='IdCategoria',db_index=True)
+    IdArticulo = models.ForeignKey(Articulos,to_field='IdArticulo',related_name='articulosListasPreciosArticulosImpuestos',on_delete=models.PROTECT,db_column='IdArticulo',db_index=True)
+    FechaInicioPrecio = models.DateField(db_index=True)
+    HoraInicioPrecio = models.TimeField(db_index=True)
+    ZonaImpuestoPrecio = models.ForeignKey(Catalogos,related_name='zonasImpuestosListasPrecios',to_field='ElementoCatalogo',on_delete=models.PROTECT,db_column='ZonaImpuestoPrecio',db_index=True) #IdCatalgo = 011
+    TipoImpuestoPrecio = models.ForeignKey(Impuestos,to_field='IdImpuesto',related_name='impuestosListasPrecios',on_delete=models.PROTECT,db_column='TipoImpuestoPrecio',db_index=True)
+    TasaImpuestoPrecio = models.ForeignKey(ImpuestoTasas,to_field='IdTasaImpuesto',related_name='impuestosTasasListasPrecios',on_delete=models.PROTECT,db_column='TasaImpuestoPrecio',db_index=True)
+    BaseCalculoImpuestoPrecio = models.CharField(max_length=1) #A:Importe Acumulado B:Importe Base
+    IdElementoImpuestoPrecio = models.AutoField(primary_key=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaListaPreciosArticuloImpuestos',on_delete=models.PROTECT,db_column="UsuarioAlta")
+    FechaAlta = models.DateField(auto_now_add=True)
+    HoraAlta = models.TimeField(auto_now_add=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioListaPreciosArticuloImpuestos',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
+    FechaCambio = models.DateField(auto_now=True,null=True)
+    HoraCambio = models.TimeField(auto_now=True,null=True)
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'ListaPreciosArticuloImpuestos'
+        ordering = ('-IdListaPrecio',)
+        verbose_name = 'ListaPreciosArticulos'
+        verbose_name_plural = 'ListasPreciosArticulos'
+        index_together = (('IdListaPrecio','IdCategoria','IdArticulo','FechaInicioPrecio',
+                           'HoraInicioPrecio'),)
+        unique_together = (('IdListaPrecio','IdCategoria','IdArticulo','FechaInicioPrecio',
+                           'HoraInicioPrecio'),)
