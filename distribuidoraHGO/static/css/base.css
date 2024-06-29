@@ -143,6 +143,18 @@ footer{
 
 }
 
+.product-list .item {
+    width: 50%;
+    padding: 10px 20px 10px 0;
+    float: left;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.product-list .item img {
+    width: 100%;
+}
+
 /*Medias querys*/
 @media screen and (min-width: 601px) and (max-width: 1024px){
     .icono-navbar{

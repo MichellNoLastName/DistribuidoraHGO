@@ -10,7 +10,7 @@
                 {{articulo.IdCategoria}}
             </a>
         </h4>
-        <p class="price">${{articulo.precio}}</p>
+        <p class="price">$ {{precio|floatformat:2}}</p>
         {{articulo.DescripcionArticulo|linebreaks}}
     </div>
 {% endblock %}

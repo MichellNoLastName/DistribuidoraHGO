@@ -123,7 +123,7 @@ class CategoriasArticulos(models.Model):
         return f'{self.DescripcionCategoria} ({self.IdCategoria})';
 
     def get_absolute_url(self):
-        return reverse("store:list_products_by_category",args=[self.SlugCategoria])
+        return reverse("store:products_list_by_category",args=[self.SlugCategoria])
 
 class Catalogos(models.Model):
     IdCatalogo = models.IntegerField(db_index=True)
@@ -171,7 +171,7 @@ class Impuestos(models.Model):
         db_table = 'Impuesto'
         ordering = ('-IdImpuesto',)
         verbose_name = 'Impuesto'
-        verbose_name = 'Impuestos'
+        verbose_name_plural = 'Impuestos'
 
     def __str__(self):
         return f'{self.DescripcionImpuesto} ({self.IdImpuesto})'
@@ -185,6 +185,7 @@ class ImpuestoTasas(models.Model):
     ClaseImpuesto = models.CharField(max_length=1) #R:Retenido (Se resta al total) T:Trasladado(Se suma al total)
     OrdenImpuesto = models.IntegerField() #Determina el orden de aplicacion y presentacion del impuesto
     TipoFactorSATImpuesto = models.CharField(max_length=1) #T:Tasa, C:Cuota, E:Exento
+    BaseImpuesto = models.DecimalField(max_digits=22,decimal_places=6,default=0)
     IdElementoTasaImpuesto = models.AutoField(primary_key=True)
     ValorSistema = models.CharField(max_length=1,default='N')
     UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaImpuestoTasas',on_delete=models.PROTECT,db_column="UsuarioAlta")
@@ -305,7 +306,7 @@ class Articulos(models.Model):
     EtiquetaArticulo = models.CharField(max_length=15)
     UPCArticulo = models.CharField(max_length=13,null=True,blank=True)
     IdProductoSATArticulo = models.ForeignKey(ProductosSAT,to_field = 'IdProductoSAT',related_name="productosSAT",on_delete=models.PROTECT,db_column="IdProductoSATArticulo")
-    DescripcionArticulo = models.CharField(max_length=128)
+    DescripcionArticulo = models.CharField(max_length=1026)
     MarcaArticulo = models.ForeignKey('MarcasArticulos',to_field='IdMarca',related_name="marcas",on_delete=models.PROTECT,db_column="MarcaArticulo",null=True,blank=True)
     ModeloArticulo = models.CharField(max_length=40)
     MedidaArticulo = models.CharField(max_length=5)
@@ -368,7 +369,7 @@ class Articulos(models.Model):
 
     def save(self,*args,**kwargs):
         if not self.SlugArticulo:
-            self.SlugArticulo = slugify(self.DescripcionArticulo)
+            self.SlugArticulo = slugify(self.EtiquetaArticulo)
         super(Articulos,self).save(*args,**kwargs)
 
     def __str__(self):
@@ -376,6 +377,9 @@ class Articulos(models.Model):
 
     def get_absolute_url(self):
         return reverse("store:product_detail",args=[self.IdArticulo,self.SlugArticulo])
+
+    def getIdArticulo(self):
+        return self.IdArticulo
 
 class Divisas(models.Model):
     IdDivisa = models.CharField(max_length=3,db_index=True,unique=True)
@@ -527,40 +531,40 @@ class AlmacenArticuloExistencias(models.Model):
     IdArticulo = models.ForeignKey(Articulos,to_field='IdArticulo',related_name="articulosAlmacenArticuloExistencias",on_delete=models.PROTECT,db_index=True,max_length=10,db_column="IdArticulo")
     IdEstadoExistencia = models.IntegerField(db_index=True)
     EjercicioExistenciasArticulo = models.IntegerField(db_index=True)
-    InicialExistenciasArticulo = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo01 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo02 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo03 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo04 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo05 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo06 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo07 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo08 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo09 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo10 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo11 = models.DecimalField(max_digits=16,decimal_places=3)
-    EntradasExistenciasArticulo12 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo01 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo02 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo03 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo04 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo05 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo06 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo07 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo08 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo09 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo10 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo11 = models.DecimalField(max_digits=16,decimal_places=3)
-    SalidasExistenciasArticulo12 = models.DecimalField(max_digits=16,decimal_places=3)
+    InicialExistenciasArticulo = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo01 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo02 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo03 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo04 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo05 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo06 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo07 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo08 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo09 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo10 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo11 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    EntradasExistenciasArticulo12 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo01 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo02 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo03 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo04 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo05 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo06 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo07 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo08 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo09 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo10 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo11 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
+    SalidasExistenciasArticulo12 = models.DecimalField(max_digits=16,decimal_places=3,default=0)
     IdElementoAlmacenArticuloExistencia = models.AutoField(primary_key=True)
-    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaExistencias',on_delete=models.PROTECT,db_column="UsuarioAlta",blank=True)
+    UsuarioAlta = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioAltaExistencias',on_delete=models.PROTECT,db_column="UsuarioAlta")
     FechaAlta = models.DateField(auto_now_add=True)
     HoraAlta = models.TimeField(auto_now_add=True)
-    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioExistencias',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True)
+    UsuarioCambio = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuarioCambioExistencias',on_delete=models.PROTECT,db_column="UsuarioCambio",null=True,blank=True)
     FechaCambio = models.DateField(auto_now=True,null=True)
     HoraCambio = models.TimeField(auto_now=True,null=True)
-    EstadoLogico = models.IntegerField()
-    Version = models.IntegerField()
+    EstadoLogico = models.IntegerField(default=1)
+    Version = models.IntegerField(default=0)
 
     class Meta:
         db_table = "AlmacenArticuloExistencias"
@@ -569,6 +573,9 @@ class AlmacenArticuloExistencias(models.Model):
         verbose_name_plural = 'AlmacenArticuloExistencias'
         index_together = (('IdAlmacen','IdCategoria','IdArticulo','IdEstadoExistencia','EjercicioExistenciasArticulo'),)
         unique_together = (('IdAlmacen','IdCategoria','IdArticulo','IdEstadoExistencia','EjercicioExistenciasArticulo'),)
+
+    def __str__(self):
+        return f'{self.IdArticulo} ({self.EjercicioExistenciasArticulo})'
 
 
 class Clientes(models.Model):
@@ -665,6 +672,9 @@ class ListaPreciosArticulos(models.Model):
         unique_together = (('IdListaPrecio','IdCategoria','IdArticulo','FechaInicioPrecio',
                            'HoraInicioPrecio'),)
 
+    def __str__(self):
+        return f'{self.IdArticulo} - {self.IdListaPrecio}'
+
 
 class ListaPreciosArticuloImpuestos(models.Model):
     IdListaPrecio = models.ForeignKey(ListasPrecios,to_field='IdListaPrecio',related_name='listasPreciosArticulosImpuestos',on_delete=models.PROTECT,db_column='IdListaPrecio',db_index=True)
@@ -689,9 +699,12 @@ class ListaPreciosArticuloImpuestos(models.Model):
     class Meta:
         db_table = 'ListaPreciosArticuloImpuestos'
         ordering = ('-IdListaPrecio',)
-        verbose_name = 'ListaPreciosArticulos'
-        verbose_name_plural = 'ListasPreciosArticulos'
+        verbose_name = 'ListaPreciosArticulosImpuestos'
+        verbose_name_plural = 'ListasPreciosArticulosImpuestos'
         index_together = (('IdListaPrecio','IdCategoria','IdArticulo','FechaInicioPrecio',
                            'HoraInicioPrecio'),)
         unique_together = (('IdListaPrecio','IdCategoria','IdArticulo','FechaInicioPrecio',
                            'HoraInicioPrecio'),)
+
+    def __str__(self):
+        return f'{self.IdArticulo} - {self.IdListaPrecio}'
