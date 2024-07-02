@@ -61,7 +61,6 @@ def product_detail(request,IdArticulo_id,slug):
     month = now.month
     product = get_product(IdArticulo_id,month,year,slug)
     price = get_prices(pIdListaPrecio=3,pIdCategoria=product.IdCategoria.IdCategoria,pIdArticulo=product.IdArticulo)[0]['PrecioArticulo']
-    print(price)
     return render(request, 'store/products/details.html',
                   {'articulo':product,
                    'precio' : price})
