@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "admin_material.apps.AdminMaterialDashboardConfig",
     "website",
     "store",
+    "cart",
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "cart.context_processor.cart",
             ],
         },
     },
@@ -111,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-es"
 
 TIME_ZONE = "UTC"
 
@@ -138,3 +140,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+CART_SESSION_ID = 'cart'

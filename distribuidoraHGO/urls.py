@@ -24,6 +24,7 @@ urlpatterns = [
     #path("",include("admin_material.urls")),
     path("",include("website.urls",namespace="website")),
     path("store/",include("store.urls",namespace="store")),
+    path("cart/",include("cart.urls",namespace='cart')),
 ]
 
 if settings.DEBUG:

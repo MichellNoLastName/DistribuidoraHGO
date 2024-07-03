@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.db.models import F
 from django.db import connection
+from cart.form import AddProductForm
 from .models import CategoriasArticulos,AlmacenArticuloExistencias,Articulos,ListaPreciosArticulos
 import datetime
 
@@ -61,6 +62,8 @@ def product_detail(request,IdArticulo_id,slug):
     month = now.month
     product = get_product(IdArticulo_id,month,year,slug)
     price = get_prices(pIdListaPrecio=3,pIdCategoria=product.IdCategoria.IdCategoria,pIdArticulo=product.IdArticulo)[0]['PrecioArticulo']
+    cart_form = AddProductForm()
     return render(request, 'store/products/details.html',
                   {'articulo':product,
-                   'precio' : price})
+                   'precio' : price,
+                   'form_carrito':cart_form})

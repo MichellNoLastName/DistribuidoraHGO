@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid">
+        <h3>Tu carrito de compra</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Quitar</th>
+                    <th>Precio unitario</th>
+                    <th>Precio</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for item in carrito %}
+                    {% with producto=item.producto%}
+                    <tr>
+                        <td>
+                            <a href="{{producto.get_absolute_url}}">
+                                <img src="{% if producto.ImagenArticulo %}{{producto.ImagenArticulo.url}}
+                                            {% else %}{%static 'img/no-image.jpg' %}{% endif %}">
+                            </a>
+                        </td>
+                        <td>{{producto.NombreArticulo}}</td>
+                        <td>
+                            <form action="{% url 'cart:add_cart' producto.IdArticulo %}" method="post">
+                                {{item.form_refresh.quantity}}
+                                {{item.form_refresh.override}}
+                                <input type="submit" value="Actualizar">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{% url 'cart:remove_cart' producto.IdArticulo %}"
+                                method="post">
+                                <input type="submit" value="Eliminar">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td class="num">${{item.precio|floatformat:2}}</td>
+                        <td class="num">${{item.precio_total|floatformat:2}}</td>
+                    </tr>
+                    {% endwith %}
+                {% endfor %}
+                    <tr class="total">
+                        <td>Total</td>
+                        <td colspan="4"></td>
+                        <td class="num">${{carrito.get_total_price|floatformat:2}}</td>
+                    </tr>
+            </tbody>
+        </table>
+        <p class="text-right">
+            <a href="{% url 'store:products_list' %}"
+                class="btn btn-secondary">Continuar comprando</a>
+            <a href="#" class="btn btn-success">Procesar compra</a>
+        <p>
+    </div>
+{% endblock %}

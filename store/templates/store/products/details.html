@@ -11,6 +11,11 @@
             </a>
         </h4>
         <p class="price">$ {{precio|floatformat:2}}</p>
+        <form action="{% url "cart:add_cart" articulo.IdArticulo %}" method="post">
+            {{ form_carrito }}
+            {% csrf_token %}
+            <input type="submit" value="Añadir al carrito">
+        </form>
         {{articulo.DescripcionArticulo|linebreaks}}
     </div>
 {% endblock %}
