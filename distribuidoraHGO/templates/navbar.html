@@ -52,12 +52,11 @@
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span>
                                 {% if carrito|length > 0 %}
-                                {{carrito|length}}
+                                {{carrito|length}} ${{carrito.get_total_price|floatformat:2}}
                                 {% else %}
-                                0
+                                Sin Productos
                                 {% endif %}
                             </span><!--Texto dinamico -->
-                            <span>Productos</span>
                         </a>
                     </li>
                     <li class="nav-item">
