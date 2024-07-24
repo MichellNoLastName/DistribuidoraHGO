@@ -26,7 +26,7 @@ class EntidadesFederativas(models.Model):
         ordering = ('-IdEntidadFederativa',)
 
     def __str__(self):
-        return f'{self.NombreEntidadFederativa} ({self.IdEntidadFederativa})'
+        return f'{self.NombreEntidadFederativa}'
 
 class Localidades(models.Model):
     IdEntidadFederativa = models.ForeignKey(EntidadesFederativas,related_name='entidadesFederativasLocalidades',to_field='IdEntidadFederativa',on_delete=models.PROTECT,db_column='IdEntidadFederativa',db_index=True)
@@ -52,7 +52,7 @@ class Localidades(models.Model):
         unique_together = (('IdEntidadFederativa','IdLocalidad'),)
 
     def __str__(self):
-        return f'{self.NombreLocalidad} ({self.IdLocalidad})'
+        return f'{self.NombreLocalidad}'
 
 class CodigosPostales(models.Model):
     IdEntidadFederativa = models.ForeignKey(EntidadesFederativas,related_name='entidadesFederativasCP',to_field='IdEntidadFederativa',on_delete=models.PROTECT,db_column='IdEntidadFederativa',db_index=True)
@@ -106,7 +106,7 @@ class Colonias(models.Model):
         index_together = (('IdEntidadFederativa','IdLocalidad','IdCodigoPostal','IdColonia'),)
 
     def __str__(self):
-        return f'{self.NombreColonia} ({self.IdColonia})'
+        return f'{self.NombreColonia}'
 
 class ContactoMedios(models.Model):
     IdContactoMedio = models.AutoField(primary_key=True)
