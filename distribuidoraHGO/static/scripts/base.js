@@ -192,16 +192,6 @@ let categories4 = {0:'Parámetros Urinarios',1:'Toxicología'}
       },
   });
 
-
-  document.querySelector('.buttonStore').addEventListener('mouseenter', function() {
-  swiper.autoplay.stop();
-  });
-
-  // Reanudar la animación del Swiper al salir del evento hover en el botón
-  document.querySelector('.buttonStore').addEventListener('mouseleave', function() {
-  swiper.autoplay.start();
-  });
-
   //Boton "Ver Mas"
   $('.buttonSeeMore').on('mouseenter',()=>{
     swiperCategories.autoplay.stop();

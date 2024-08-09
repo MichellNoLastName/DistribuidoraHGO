@@ -21,18 +21,20 @@ body{
 .btnSearchMovil{
     display: inline;
     background-color: #fff;
-    border: 0;
+    border-radius: 10%;
+    border: 0.01px solid gray;
     cursor: pointer;
     font-size: 15px;
     height: 40px;
     width: 40px;
     transition: transform 0.8s ease;
 }
+
+
 .formSearchMovil .inputSearchMovil {
-    margin-top: 4%;
     background-color: #fff;
-    display: inline;
     border: 0;
+    display: inline;
     font-size: 14px;
     height: 40px;
     width: 0px;
@@ -69,6 +71,7 @@ body{
     height:72px;
 }
 
+
 .navbar-toggler {
     background-color: white !important; /* Cambia el color de fondo del botón */
     color: black !important; /* Cambia el color del texto del botón */
@@ -87,14 +90,14 @@ body{
 /*Botones del segundo navbar*/
 #navSecond:hover{
     background-color: #343a40;
-    color: white !important;
+    color: white;
 }
 /*Icono de busqueda rapida*/
 .fa-searchengin{
     font-size: 1.5em;
 }
 
-/*Icono de Whatsapp*/
+/*icono de Whatsapp*/
 .fa-whatsapp{
     font-size: 1.8em;
     color:green;
@@ -107,6 +110,10 @@ body{
     border-radius:100% !important;
     background-color: white;
     color:#3b5998;
+}
+
+.account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
+    color:#0098db;
 }
 
 #btn_navbarSearch:hover {
@@ -143,6 +150,18 @@ footer{
 
 }
 
+.product-list .item {
+    width: 50%;
+    padding: 10px 20px 10px 0;
+    float: left;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.product-list .item img {
+    width: 100%;
+}
+
 /*Medias querys*/
 @media screen and (min-width: 601px) and (max-width: 1024px){
     .icono-navbar{
@@ -157,6 +176,44 @@ footer{
 
     #form_navbarSearch{
         font-size: 13px;
+    }
+
+    .formSearchMovil{
+        display: inline;
+    }
+
+    #form_navbarSearch, #btn_navbarSearch{
+        display:none;
+    }
+
+    #formSearch{
+       display: none;
+    }
+
+    #navSecond{
+        text-align: center;
+    }
+
+    #navbar{
+        background: rgb(9,9,9);
+        background: linear-gradient(0deg, rgba(9,9,9,1) 0%, rgba(255,255,255,1) 0%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000; /* Asegura que el navbar esté por encima de otros elementos */
+    }
+
+    .navbar2{
+        display: none !important;
+    }
+
+    .navbar-nav{
+        margin-top: 5%;
+    }
+
+    .account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
+        font-size: 1.8em;
     }
 
     footer .footer-top{
@@ -223,6 +280,10 @@ footer{
         height:24px;
     }
 
+    .account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
+        font-size: 1.8em;
+    }
+
     footer .footer-top{
         display: inline-block !important;
     }
@@ -260,5 +321,38 @@ footer{
         font-size: 16px;
     }
 
+    .formSearchMovil{
+        display: inline;
+    }
+
+    #form_navbarSearch, #btn_navbarSearch{
+        display:none;
+    }
+
+    #formSearch{
+       display: none;
+    }
+
+    #navSecond{
+        text-align: center;
+    }
+
+    #navbar{
+        background: rgb(9,9,9);
+        background: linear-gradient(0deg, rgba(9,9,9,1) 0%, rgba(255,255,255,1) 0%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000; /* Asegura que el navbar esté por encima de otros elementos */
+    }
+
+    .navbar2{
+        display: none !important;
+    }
+
+    .navbar-nav{
+        margin-top: 5%;
+    }
 
 }

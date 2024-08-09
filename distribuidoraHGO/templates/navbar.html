@@ -5,11 +5,21 @@
             <a class="navbar-brand" href="{% url 'website:index' %}">
             <img src="{% static 'images/distribuidoraHGO.ico' %}" alt="Logo" class="d-inline-block align-text-top icono-navbar">
             </a>
+            <div class="account_cart_movil">
+                <a href="{% url 'account_login' %}">
+                    <i class="fa-solid fa-circle-user"></i>
+                </a>
+            </div>
             <div class="formSearchMovil">
                 <input type="text" class="inputSearchMovil" placeholder="¿Algún producto?">
                 <button class="btnSearchMovil">
                   <i class="fas fa-search"></i>
                 </button>
+            </div>
+            <div class="account_cart_movil">
+                <a href="{% url 'cart:cart_detail' %}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,7 +33,7 @@
                     <a class="nav-link" id="navSecond" href="{% url 'website:aboutus' %}">¿Quienes Somos?</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="navSecond" href="#">Productos</a>
+                    <a class="nav-link" id="navSecond" href="{% url 'store:products_list'%}">Productos</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navSecond" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,22 +46,33 @@
                     </ul>
                   </li>
                 </ul>
-                <form class="d-flex ms-auto me-auto" role="search" id="formSearch">
+                <form class="d-flex ms-auto me-auto mb-0" role="search" id="formSearch">
                     <input id="form_navbarSearch" class="form-control me-1" type="search" placeholder="¿Buscas algún producto o marca?" aria-label="Search">
                     <button id="btn_navbarSearch" class="btn btn-outline-success" type="submit"><i class="fa-brands fa-searchengin"></i></button>
                 </form>
-                <ul class="navbar-nav me-lg-auto ms-lg-0 me-0 ms-auto mb-2 mb-lg-0 mt-1">
+                <ul class="navbar-nav navbar2 me-lg-auto ms-lg-0 me-0 ms-0 mb-2 mb-lg-0 mt-1">
                     <li class="nav-item">
-                        <a id="navSecond" class="nav-link" href="#">
+                        <a id="navSecond" class="nav-link" href="{% url 'account_login' %}">
                             <i class="fa-solid fa-user"></i>
-                            <span>Iniciar Sesion</span> <!--Texto dinamico -->
+                            <span>
+                                {% if user.is_authenticated %}
+                                    {{user.first_name}} {{user.last_name}}
+                                {% else %}
+                                    Iniciar Sesión
+                                {% endif %}
+                            </span> <!--Texto dinamico -->
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="navSecond" class="nav-link" href="#">
+                        <a id="navSecond" class="nav-link" href="{% url 'cart:cart_detail' %}">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span>0</span><!--Texto dinamico -->
-                            <span>Productos</span>
+                            <span>
+                                {% if carrito|length > 0 %}
+                                {{carrito|length}} ${{carrito.get_total_price|floatformat:2}}
+                                {% else %}
+                                Sin Productos
+                                {% endif %}
+                            </span><!--Texto dinamico -->
                         </a>
                     </li>
                     <li class="nav-item">
