@@ -1,18 +1,35 @@
 {% load allauth socialaccount %}
+{% load i18n %}
 {% get_providers as socialaccount_providers %}
 {% if socialaccount_providers %}
-    {% element provider_list %}
+    <ul class="socialaccount_providers">
         {% for provider in socialaccount_providers %}
             {% if provider.id == "openid" %}
                 {% for brand in provider.get_brands %}
                     {% provider_login_url provider openid=brand.openid_url process=process as href %}
-                    {% element provider name=brand.name provider_id=provider.id href=href %}
-                    {% endelement %}
+                    <li class="social-btn">
+                        <a href="{{ href }}" class="btn btn-openid">
+                            <img src="{{ brand.logo_url }}" alt="{{ brand.name }}" class="btn-provider-icon"/>
+                            {{ brand.name }}
+                        </a>
+                    </li>
                 {% endfor %}
+            {% elif provider.id == 'google' %}
+                <li class="social-btn">
+                    <a href="{{ provider.auth_url }}" class="btn btn-google">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="{% trans 'Google' %}" class="btn-google-icon"/>
+                        {% trans "Iniciar sesión con Google" %}
+                    </a>
+                </li>
+            {% else %}
+                {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
+                <li class="social-btn">
+                    <a href="{{ href }}" class="btn btn-{{ provider.id }}">
+                        <img src="{{ provider.logo_url }}" alt="{{ provider.name }}" class="btn-provider-icon"/>
+                        {{ provider.name }}
+                    </a>
+                </li>
             {% endif %}
-            {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
-            {% element provider name=provider.name provider_id=provider.id href=href %}
-            {% endelement %}
         {% endfor %}
-    {% endelement %}
+    </ul>
 {% endif %}

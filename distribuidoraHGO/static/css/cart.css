@@ -1,0 +1,31 @@
+.no-cart-message {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.no-cart-image {
+    width: 30%;
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block;
+    margin: 0 auto; /* Centra la imagen */
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .no-cart-message{
+        margin-top: 30%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .no-cart-message{
+        margin-top: 30%;
+        height: 44vh;
+    }
+
+    .no-cart-message h3{
+        font-size: 1em;
+    }
+}

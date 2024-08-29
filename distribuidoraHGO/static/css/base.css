@@ -4,6 +4,7 @@
     font-family: 'Montserrat', sans-serif;
     font-family: 'Nunito Sans', sans-serif;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }
 
 .hidden{
@@ -113,6 +114,7 @@ body{
 }
 
 .account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
+    display: none;
     color:#0098db;
 }
 
@@ -213,6 +215,7 @@ footer{
     }
 
     .account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
+        display: block;
         font-size: 1.8em;
     }
 
@@ -261,9 +264,6 @@ footer{
 }
 
 @media screen and (max-width: 600px){
-    .navbar{
-        font-size: 10px !important;
-    }
 
     #form_navbarSearch{
         width: 18em;
@@ -275,13 +275,28 @@ footer{
         font-size: 10px;
     }
 
+    .btnSearchMovil{
+        font-size: 1.3em;
+        height: 2.2em;
+        width: 2.2em;
+    }
+
+    .formSearchMovil .inputSearchMovil{
+        font-size: 1em;
+    }
+
+    .formSearchMovil.active .inputSearchMovil{
+        width: 10em;
+    }
+
     .icono-navbar{
         width:50px;
         height:24px;
     }
 
     .account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
-        font-size: 1.8em;
+        display: block;
+        font-size: 1.6em;
     }
 
     footer .footer-top{
@@ -341,6 +356,7 @@ footer{
         background: rgb(9,9,9);
         background: linear-gradient(0deg, rgba(9,9,9,1) 0%, rgba(255,255,255,1) 0%);
         position: fixed;
+        font-size: 12px;
         top: 0;
         left: 0;
         right: 0;

@@ -9,7 +9,6 @@ window.onload = ()=> {
         $('#imagePresentation').css({opacity:1,display:'block'})
         $('.slogan').css({opacity:1,display:'block'})
     });
-
 };
 //Efecto de entrada lateral de los elementos
 let body = document.querySelector( 'body' )

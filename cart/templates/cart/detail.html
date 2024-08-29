@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
     <div class="container-fluid">
+        {% if carrito|length > 0 %}
         <h3>Tu carrito de compra</h3>
         <table>
             <thead>
@@ -57,5 +58,11 @@
                 class="btn btn-secondary">Continuar comprando</a>
             <a href="{% url 'orders:add_order' %}" class="btn btn-success">Procesar compra</a>
         <p>
+    {% else %}
+        <div class="container no-cart-message">
+            <h3>Tu carrito está vacío</h3>
+            <img src="{% static 'images/carro-vacio.png' %}" alt="Carrito vacío" class="no-cart-image">
+        </div>
+    {% endif %} 
     </div>
 {% endblock %}

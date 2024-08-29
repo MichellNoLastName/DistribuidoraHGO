@@ -31,6 +31,12 @@
         animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
+    .image-aboutus img{
+      height: 320px;
+      width: 320px;
+      margin: 1em 0 1em 0;
+    }
+
     .aboutus-text-presentation{
         text-align: justify;
         font-size: 1.4rem;
@@ -57,18 +63,16 @@
     }
 
     .aboutus-text h3{
-        background: #8b8c89;
+        background: #003566;
         color: var(--color-secondary-white);
-        border-right: 1px outset black;
-        border-left: 1px outset black;
         font-size: 2.5rem;
         font-weight: 700;
+        padding: 5px 0 5px 0;
     }
 
     .aboutus-text p{
         text-align: justify;
         font-size: 1.3rem;
-        font-style: italic;
     }
 
   .faq-container {

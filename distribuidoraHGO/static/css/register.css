@@ -1,0 +1,86 @@
+/* Estilos generales para la página de registro */
+.register-main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.register-section {
+    max-width: 100%;
+}
+
+.register-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: justify;
+}
+
+.register-card h1 {
+    font-size: 28px;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.register-card p {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.btn-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.form-signup .btn {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 8px;
+    background: #007bff;
+    border: none;
+    color: #ffffff;
+    transition: background 0.3s ease;
+    text-align: justify;
+}
+
+.form-signup div .requiredField .asteriskField{
+    display: none;
+}
+
+.form-signup div .requiredField::after{
+    content: '*';
+    color: red;
+}
+
+.form-signup .btn:hover {
+    background: #0056b3;
+}
+
+.social-login p {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+input.form-control {
+    border-radius: 8px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    margin-bottom: 15px;
+    padding: 12px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+input.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+    border-color: #007bff;
+    outline: none;
+}

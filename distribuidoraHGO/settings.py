@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+#Cargar variables de entorno
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +30,8 @@ SECRET_KEY = "django-insecure-!4vk)k5tylb_b1pbn67l(g1#e%j(nzreoq3za&4)3_8)qw7&de
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.5',
+                 '127.0.0.1']
 
 
 # Application definition
@@ -86,12 +91,22 @@ WSGI_APPLICATION = "distribuidoraHGO.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+db_user = ''
+db_pass = ''
+
+if os.name == 'nt':
+    db_user = os.getenv('MYSQL_MSI_USER')
+    db_pass = os.getenv('MYSQL_MSI_PASS')
+else:
+    db_user = os.getenv('MYSQL_ACER_USER')
+    db_pass = os.getenv('MYSQL_ACER_PASS')
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "distribuidorahgo_20231220",
-        "USER":"root",
-        "PASSWORD":"admin",
+        "USER":db_user,
+        "PASSWORD":db_pass,
         "HOST":"localhost",
         "PORT":"3306"
     }
@@ -115,6 +130,13 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+# settings.py
+
+ACCOUNT_FORMS = {
+    'signup': 'website.form.CustomSignupForm',  # Reemplaza 'myapp' con el nombre de tu aplicación
+}
+
 
 
 # Internationalization

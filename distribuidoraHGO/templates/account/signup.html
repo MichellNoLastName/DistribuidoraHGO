@@ -1,38 +1,35 @@
 {% extends "account/base_entrance.html" %}
-{% load allauth i18n %}
+{% load allauth i18n crispy_forms_tags %}
+
 {% block head_title %}
-    {% trans "Signup" %}
+    {% trans "Sign Up" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    {% setvar link %}
-        <a href="{{ login_url }}">
-        {% endsetvar %}
-        {% setvar end_link %}
-        </a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-    {% endelement %}
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% url 'account_signup' as action_url %}
-        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-            {% slot body %}
-                {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
-                    {% trans "Sign Up" %}
-                {% endelement %}
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+    <main class="register-main">
+        <div class="container">
+            <section class="register-section mb-4">
+                <div class="row justify-content-center">
+                    <div class="register-card col-md-8 col-lg-6">
+                        <h1 class="text-center mb-4">{% trans "Sign Up" %}</h1>
+
+                        <p class="text-center mb-4">
+                            ¿Ya tienes una cuenta? Por favor, haz clic en <a href="{% url 'account_login' %}" class="btn-link">"Iniciar Sesión"</a>.
+                        </p>
+
+                        {% if not SOCIALACCOUNT_ONLY %}
+                            <form method="post" action="{% url 'account_signup' %}" class="form-signup">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                {{ redirect_field }}
+                                <button type="submit" class="btn btn-primary btn-block mt-3">
+                                    {% trans "Sign Up" %}
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 {% endblock content %}

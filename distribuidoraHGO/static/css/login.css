@@ -1,0 +1,130 @@
+/* Estilos adicionales para mejorar la apariencia del formulario de inicio de sesión */
+
+.login-main {
+    padding: 50px 0;
+}
+
+.login-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.social-login p {
+    font-size: 1.1rem;
+}
+
+.social-buttons .btn {
+    margin: 5px 0;
+    border: 1px black solid;
+}
+
+.or-text {
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.login-form .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.login-form .btn-link {
+    color: #007bff;
+}
+
+.login-form .btn-link:hover {
+    color: #0056b3;
+}
+
+.text-justify{
+    text-align: justify;
+}
+
+/* Espaciado adicional para el formulario */
+.login-form .form-group {
+    margin-bottom: 1.5rem; /* Espacio entre campos del formulario */
+}
+
+.login-form .form-check {
+    margin-bottom: 1rem; /* Espacio entre casillas de verificación */
+}
+
+.login-form .form-control {
+    padding: 0.75rem; /* Ajusta el padding para mejorar el espaciado interno */
+}
+
+.asteriskField{
+    display: none;
+}
+
+/* Estilos para los botones sociales */
+.socialaccount_providers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-btn {
+    margin-bottom: 1rem; /* Espacio entre los botones sociales */
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #db4437; /* Borde color rojo de Google */
+    border-radius: 5px;
+    background-color: #fff;
+    color: #db4437;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-google:hover {
+    background-color: #db4437;
+    color: #fff;
+    border-color: #db4437;
+}
+
+.btn-google-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Estilo genérico para otros botones de proveedor */
+.btn-provider-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Estilo genérico para botones de otros proveedores */
+.btn-openid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #007bff; /* Puedes ajustar el color para OpenID */
+    border-radius: 5px;
+    background-color: #fff;
+    color: #007bff;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-openid:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
