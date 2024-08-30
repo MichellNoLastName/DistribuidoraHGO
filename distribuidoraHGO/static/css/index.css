@@ -342,10 +342,15 @@
     }
 
     .principal{
-        background-size: 155%;
+        background: rgb(255,255,255);
+        background: radial-gradient(circle, rgba(255,255,255,1) 70%, rgba(14,101,166,0.24413515406162467) 100%);
         margin-top: 15%;
         padding-bottom: 5%;
         width: 100%;
+    }
+
+    .principal::before{
+        background-color: rgba(0, 0, 0, 0); /* Cambia los valores RGBA según la opacidad y el color deseado*/
     }
 
     #swiperMetodosPago{
@@ -366,7 +371,7 @@
         padding-bottom: 0px;
     }
     .cat-title h2{
-        font-size: 1rem;
+        font-size: 1.5rem;
         letter-spacing: 0.2rem;
     }
 
@@ -377,11 +382,12 @@
     }
 
     .slogan{
-        font-size:1rem
+        font-size:1.2rem
     }
 
     #imagePresentation{
-        width: 13em;
+        width: 70%;
+        height: auto;
     }
 
   }
@@ -420,7 +426,7 @@
     }
 
     .principal{
-        background-size: 125%;
+        background-size: 135%;
         padding-top: 4.5em;
     }
 
@@ -442,22 +448,23 @@
     }
 
     .cat-title h2{
-        font-size: 1.5rem;
+        font-size: 1.9rem;
         letter-spacing: 0.2rem;
     }
 
     .cat-subtitle{
         font-size: 1rem;
         font-weight: 600;
-        font-family: 'Monserrtar', sans-serif;
+        font-family: 'Monserrat', sans-serif;
     }
 
     #imagePresentation{
-        width: 15em;
+        width: 50%;
+        height: auto;
     }
 
     .slogan{
-        font-size:1.5rem;
+        font-size:1.9rem;
     }
 
   }

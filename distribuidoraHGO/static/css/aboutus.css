@@ -11,6 +11,10 @@
     padding-bottom: 20%;
 
 }
+
+.presentation-movil{
+  display: none;
+}
 .presentation::before{
     content: '';
     position: absolute;
@@ -175,6 +179,30 @@
   /* Media query para dispositivos medianos (como tablets) */
 
   @media only screen and (min-width: 601px) and (max-width: 1024px) {
+
+    .presentation #imagePresentationAb{
+      width: 100%;
+      height: auto;
+    }
+
+    .aboutus{
+      top:10vh;
+    }
+
+    .aboutus-text h3{
+      font-size: 1.6em;
+    }
+
+    .aboutus-text p{
+      font-size: 1.1em;
+    }
+
+    .image-aboutus img{
+      height: 220px;
+      width: 220px;
+      margin: 1em 0 1em 0;
+    }
+
     .faq {
         padding: 15px;
     }
@@ -197,25 +225,69 @@
     }
   }
 
-  @media only screen and (max-width: 600px) {
-    .faq{
-        margin: 5px 0;
-        padding: 15px;
+  @media screen and (max-width:600px){
+
+    .presentation{
+      display: none;
     }
-    .faq-title{
+    .presentation-movil{
+      display: block;
+      margin-top: 10vh;
+      animation: fadeInDown;
+      animation-duration: 6s;
+      animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .presentation-movil #imagePresentationAb{
+      width: 80%;
+      height: auto;
+    }
+    .presentation-movil .aboutus-text-presentation-movil{
+      font-size: 1.1em;
+      text-align: justify;
+    }
+
+    .presentation-movil .aboutus-text-presentation-movil h1{
+      background: #003566;
+      color: var(--color-secondary-white);
+      font-size: 1.4em;
+      font-weight: 700;
+      padding: 5px 0 5px 0;
+    }
+
+    .aboutus-text h3{
+      font-size: 1.4em;
+    }
+
+    .aboutus-text p{
+      font-size: 1em;
+    }
+
+    .image-aboutus img{
+      height: 200px;
+      width: 200px;
+      margin: 1em 0 1em 0;
+    }
+
+  .faq{
+      margin: 5px 0;
+      padding: 15px;
+  }
+  .faq-title{
         font-size: 0.9rem;
-    }
+  }
 
-    .faq-text{
-        font-size: 0.5rem;
-        margin: 10px 0 0;
-    }
+  .faq-text{
+      font-size: 0.5rem;
+      margin: 10px 0 0;
+  }
 
-    .faq-toggle{
-        font-size: 0.5rem;
-        top: 15px;
-        right: 15px;
-        height: 15px;
-        width: 15px;
-    }
+  .faq-toggle{
+      font-size: 0.5rem;
+      top: 15px;
+      right: 15px;
+      height: 15px;
+      width: 15px;
+  }
+
   }

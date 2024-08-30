@@ -128,3 +128,15 @@
     border-color: #007bff;
 }
 
+@media screen and (min-width:601px) and (max-width:1024px){
+    .login-main {
+        margin-top: 5vh;
+    }
+}
+
+@media screen and (max-width:600px){
+    .login-main {
+        margin-top: 3vh;
+    }
+}
+
