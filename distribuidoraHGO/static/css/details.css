@@ -1,0 +1,24 @@
+.product-img-top {
+    width: 480px !important;
+    height: auto;
+    align-self: center;
+}
+.price {
+    font-weight: bold;
+    margin-right: 2em;
+}
+.product {
+    border-radius: 15px;
+}
+.product-body {
+    padding: 1.5rem;
+}
+.product-title {
+    font-size: 1.75rem;
+}
+.product-subtitle {
+    font-size: 1.25rem;
+}
+.product-text {
+    font-size: 1rem;
+}

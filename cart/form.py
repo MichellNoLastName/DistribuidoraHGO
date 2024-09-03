@@ -1,6 +1,6 @@
 from django import forms
 
-OPTION_PRODUCTS = [(i,str(i)) for i in range(1,21)]
+OPTION_PRODUCTS = [(i,str(i)) for i in range(1,16)]
 
 class AddProductForm(forms.Form):
     quantity = forms.TypedChoiceField(choices=OPTION_PRODUCTS,

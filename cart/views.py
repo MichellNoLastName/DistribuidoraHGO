@@ -10,13 +10,32 @@ from .form import AddProductForm
 @require_POST
 def add_cart(request,product_id):
     cart = Cart(request)
+    print(request.POST.get('action'))
     product_in = get_object_or_404(Articulos,IdArticulo=product_id)
-    form = AddProductForm(request.POST)
-    if form.is_valid():
-        cd = form.cleaned_data
-        cart.add(product=product_in,quantity=cd['quantity'],
-                 change_quantity=cd['override'])
-    return redirect('cart:cart_detail')
+    if request.POST.get('action') == 'buy': #Comprar
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            cart.add(product=product_in,quantity=cd['quantity'],
+                    change_quantity=cd['override'])
+        else:
+            cart.add(product=product_in,quantity=1,
+                    change_quantity=False)
+
+        return redirect('cart:cart_detail')
+
+    elif request.POST.get('action') == 'add': #Agregar Carrito
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            cart.add(product=product_in,quantity=cd['quantity'],
+                    change_quantity=cd['override'])
+            return redirect('cart:cart_detail')
+        else:
+            cart.add(product=product_in,quantity=1,
+                    change_quantity=False)
+        return redirect('store:products_list')
+
 
 @require_POST
 def remove_cart(request,product_id):

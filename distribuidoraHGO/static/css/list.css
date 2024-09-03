@@ -1,0 +1,94 @@
+/* Estilo de la lista de categorías */
+.list-categories{
+    border: 1px solid gray;
+    border-radius: 10px;
+    background: #cae9ff;
+}
+
+.products-subtitles{
+    font-weight: 700;
+    color: #1b4965;
+}
+
+.list-group a {
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.list-group-item {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 700;
+}
+
+.list-group-item.active {
+    background-color: #1b4965 !important;
+    border: none;
+}
+
+.list-group-item:hover {
+    background-color: #dee2e6;
+}
+
+/* Cartas de productos */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.card-img-top:hover {
+    opacity: 0.9;
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #28a745;
+}
+
+/* Botones */
+.btn{
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-seemore{
+    background-color: rgba(0,177,255,1) !important;
+    background-color: #1b4965 !important;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .list-group-item {
+        text-align: center;
+    }
+}
