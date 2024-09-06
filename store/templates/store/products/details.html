@@ -23,7 +23,7 @@
                 <div class="product-body">
                     <h5 class="product-title">Descripción</h5>
                     <hr>
-                    <p class="product-text">{{ articulo.DescripcionArticulo|linebreaks }}</p>
+                    <p class="product-text">{{ articulo.DescripcionArticulo }}</p>
                     <hr>
                     <div class="container mt-3">
                         <p class="price text-success text-start h4">$ {{ precio|floatformat:"2u" }} MXN</p>
@@ -39,6 +39,7 @@
                                 </button>
                             </div>
                         </form>
+                        <p class="fw-bold fs-6 mt-4"><small>*Todos nuestros precios ya incluyen IVA<small></p>
                     </div>
                 </div>
             </div>

@@ -64,7 +64,7 @@
 }
 
 /* Botones */
-.btn{
+.card-footer .btn{
     font-weight: 700 !important;
     border: none !important;
     border-radius: 5px;
@@ -73,13 +73,8 @@
 }
 
 .btn-seemore{
-    background-color: rgba(0,177,255,1) !important;
     background-color: #1b4965 !important;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
 }
 
 /* Media Queries para responsividad */

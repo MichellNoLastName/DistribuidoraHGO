@@ -1,7 +1,7 @@
 {% load static %}
 {% block content %}
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
-        <div class="container-fluid">
+        <div class="container-fluid navbar-container">
             <a class="navbar-brand" href="{% url 'website:index' %}">
             <img src="{% static 'images/distribuidoraHGO.ico' %}" alt="Logo" class="d-inline-block align-text-top icono-navbar">
             </a>
@@ -46,9 +46,9 @@
                     </ul>
                   </li>
                 </ul>
-                <form class="d-flex ms-auto me-auto mb-0" role="search" id="formSearch">
-                    <input id="form_navbarSearch" class="form-control me-1" type="search" placeholder="¿Buscas algún producto o marca?" aria-label="Search">
-                    <button id="btn_navbarSearch" class="btn btn-outline-success" type="submit"><i class="fa-brands fa-searchengin"></i></button>
+                <form class="d-flex ms-auto me-auto mb-0 mt-3 align-items-center" role="search" id="formSearch">
+                    <input id="form_navbarSearch" class="form-control me-1 d-inline" type="search" placeholder="¿Buscas algún producto o marca?" aria-label="Search">
+                    <button id="btn_navbarSearch" class="btn mb-3" type="submit"><i class="fa-brands fa-searchengin"></i></button>
                 </form>
                 <ul class="navbar-nav navbar2 me-lg-auto ms-lg-0 me-0 ms-0 mb-2 mb-lg-0 mt-1">
                     <li class="nav-item">

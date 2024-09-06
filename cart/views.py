@@ -10,9 +10,9 @@ from .form import AddProductForm
 @require_POST
 def add_cart(request,product_id):
     cart = Cart(request)
-    print(request.POST.get('action'))
+    #print(request.POST.get('action'))
     product_in = get_object_or_404(Articulos,IdArticulo=product_id)
-    if request.POST.get('action') == 'buy': #Comprar
+    if request.POST.get('action') == 'buy' or request.POST.get('action') == None: #Comprar
         form = AddProductForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
