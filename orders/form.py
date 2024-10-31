@@ -5,11 +5,13 @@ from .models import OrdenesCliente,EntidadesFederativas,Localidades,Colonias
 
 class AddOrderForm(forms.ModelForm):
     IdOrdenCliente = forms.CharField(label="",widget=forms.TextInput(attrs={'class':'form-control'}))
-    NombreOrdenCliente = forms.CharField(label="Nombre Completo",widget=forms.TextInput(attrs={'class':'form-control'}))
+    NombreOrdenCliente = forms.CharField(label="Nombre Completo",widget=forms.TextInput(attrs={'class':'form-control'}),required=True)
     ApellidoPaternoOrdenCliente = forms.CharField(label="Apellido Paterno",widget=forms.TextInput(attrs={'class':'form-control'}))
-    ApellidoMaternoOrdenCliente = forms.CharField(label="Apellido Materno",widget=forms.TextInput(attrs={'class':'form-control'}))
+    ApellidoMaternoOrdenCliente = forms.CharField(label="Apellido Materno",widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
     CorreoElectronicoOrdenCliente = forms.EmailField(label="Correo Electrónico",widget=forms.EmailInput(attrs={'class':'form-control'}))
-    NumeroTelefonicoOrdenCliente = forms.CharField(label="Teléfono",max_length=10,widget=forms.NumberInput(attrs={'class':'form-control'}))
+    NumeroTelefonicoOrdenCliente = forms.CharField(label="Número Telefónico",max_length=10,min_length=10,error_messages={'max_length': 'El número debe tener 10 dígitos.', 'min_length': 'El número debe tener 10 dígitos.'},
+                                                   widget=forms.TextInput(attrs={'type': 'tel', 'pattern': '\d{10}', 'title': 'Debe contener exactamente 10 dígitos'})
+    )
     CodigoPostalOrdenCliente = forms.CharField(label="Código Postal (Escribe tu código postal y presiona Enter para validarlo)",max_length=6,widget=forms.NumberInput(attrs={'class':'form-control'}))
     EntidadFederativaOrdenCliente = forms.ModelChoiceField(queryset=EntidadesFederativas.objects.all().order_by('NombreEntidadFederativa'))
     LocalidadOrdenCliente = forms.ModelChoiceField(queryset=Localidades.objects.none())

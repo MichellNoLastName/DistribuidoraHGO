@@ -1,0 +1,66 @@
+.order-header{
+    background: #cae9ff;
+    font-weight: 700 !important;
+    color: #1b4965;
+}
+
+.order-form input, .order-form select, .order-form textarea {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.order-form input:focus, .order-form select:focus, .order-form textarea:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.order {
+    border-radius: 15px;
+}
+
+.order-header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.list-group-item {
+    font-size: 1.1rem;
+}
+
+.list-group-item .badge {
+    font-size: 1.1rem;
+}
+
+/* Para Webkit (Chrome, Safari, Edge) */
+.order-form input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Para Firefox */
+.order-form input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.order-form div .requiredField .asteriskField{
+    display: none;
+}
+
+.order-form div .requiredField::after{
+    content: '*';
+    color: red;
+}

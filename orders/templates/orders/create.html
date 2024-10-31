@@ -4,33 +4,44 @@
 Procesar Compra
 {% endblock %}
 {% block content %}
-
-    <div class="container">
-        <h3>Procesar Compra</h3>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <form method="post" class="order-form">
-                    {{formulario|crispy}}
-                    <button class="btn btn-primary" type="submit">Finalizar compra</button>
-                    {% csrf_token %}
-                </form>
-            </div>
-            <div class="col-sm">
-                <div class="order-info">
-                    <h3>Tu orden</h3>
-                    <ul>
-                        {% for item in carrito %}
-                        <li>
-                            {{ item.cantidad }} x {{ item.producto.NombreArticulo }}
-                            <span>${{ item.precio_total|floatformat:2 }}</span>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    <p>Total: ${{ carrito.get_total_price|floatformat:2 }}</p>
+<div class="container-fluid mt-5">
+    <div class="order shadow-lg">
+        <div class="order-header text-center py-2">
+            <h3 class="my-2 fw-bold">Procesar Compra</h3>
+        </div>
+        <div class="order-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <form method="post" class="order-form p-4">
+                        <h4 class="mb-4">Detalles de Compra</h4>
+                        {{ formulario|crispy }}
+                        {% csrf_token %}
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success btn-lg mt-3" type="submit">
+                                <i class="fas fa-check-circle"></i> Finalizar compra
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 col-md-12 mt-4 mt-lg-0">
+                    <div class="order-info p-4 mt-4 bg-light rounded border">
+                        <h4 class="text-center mb-4 fw-bolder">Tu Orden</h4>
+                        <ul class="list-group mb-3">
+                            {% for item in carrito %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ item.cantidad }} x {{ item.producto.NombreArticulo }}
+                                <span class="badge bg-primary rounded-pill">
+                                    ${{ item.precio_total|floatformat:"2u" }}
+                                </span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <hr>
+                        <p class="text-right fw-bold fs-5">Total: ${{ carrito.get_total_price|floatformat:"2u" }}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

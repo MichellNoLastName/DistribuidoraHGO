@@ -55,10 +55,6 @@
     padding: 0.75rem; /* Ajusta el padding para mejorar el espaciado interno */
 }
 
-.asteriskField{
-    display: none;
-}
-
 /* Estilos para los botones sociales */
 .socialaccount_providers {
     list-style: none;
@@ -139,4 +135,3 @@
         margin-top: 3vh;
     }
 }
-

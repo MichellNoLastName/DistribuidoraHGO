@@ -46,9 +46,7 @@
     font-weight: 600;
     padding: 12px;
     border-radius: 8px;
-    background: #007bff;
     border: none;
-    color: #ffffff;
     transition: background 0.3s ease;
     text-align: justify;
 }
@@ -60,10 +58,6 @@
 .form-signup div .requiredField::after{
     content: '*';
     color: red;
-}
-
-.form-signup .btn:hover {
-    background: #0056b3;
 }
 
 .social-login p {

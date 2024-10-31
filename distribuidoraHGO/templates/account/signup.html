@@ -22,14 +22,32 @@
                                 {% csrf_token %}
                                 {{ form|crispy }}
                                 {{ redirect_field }}
-                                <button type="submit" class="btn btn-primary btn-block mt-3">
-                                    {% trans "Sign Up" %}
-                                </button>
+                                <div class="container">
+                                    <div class="row justify-content-between">
+                                        <button type="submit" class="btn btn-primary mt-3 col-2">
+                                            {% trans "Sign Up" %}
+                                        </button>
+                                        <button type="button" id="togglePassword" class="btn btn-secondary mt-3 col-4 text-center">
+                                            👁️ Ver contraseñas
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                         {% endif %}
                     </div>
                 </div>
             </section>
+            <script>
+                document.getElementById('togglePassword').addEventListener('click', function () {
+                    const passwordInput1 = document.getElementsByName("password1")[0];
+                    const passwordInput2 = document.getElementsByName("password2")[0];
+
+                    const type = passwordInput1.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput1.setAttribute('type', type);
+                    passwordInput2.setAttribute('type', type);
+                    this.textContent = type === 'password' ? '👁️ Ver contraseñas' : '👁️‍🗨️ Ocultar contraseñas'; // Cambia el icono según el estado
+                });
+            </script>
         </div>
     </main>
 {% endblock content %}

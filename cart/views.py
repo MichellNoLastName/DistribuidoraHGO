@@ -22,6 +22,7 @@ def add_cart(request,product_id):
             cart.add(product=product_in,quantity=1,
                     change_quantity=False)
 
+        messages.success(request,f"El artículo {product_in.NombreArticulo} fue añadido")
         return redirect('cart:cart_detail')
 
     elif request.POST.get('action') == 'add': #Agregar Carrito
@@ -34,6 +35,8 @@ def add_cart(request,product_id):
         else:
             cart.add(product=product_in,quantity=1,
                     change_quantity=False)
+
+        messages.success(request,f"El artículo {product_in.NombreArticulo} fue añadido")
         return redirect('store:products_list')
 
 
@@ -42,6 +45,7 @@ def remove_cart(request,product_id):
     cart = Cart(request)
     product_in = get_object_or_404(Articulos,IdArticulo=product_id)
     cart.remove(product=product_in)
+    messages.success(request,f"El artículo {product_in.NombreArticulo} fue eliminado")
     return redirect('cart:cart_detail')
 
 def cart_detail(request):
