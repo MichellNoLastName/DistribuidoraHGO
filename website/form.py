@@ -44,9 +44,10 @@ class CustomSignupForm(SignupForm):
         self.fields['numeroTelefonicoUsuario'].widget.attrs['placeholder'] = 'Ej. 1122223344'
 
     def save(self, request):
-        user = super(CustomSignupForm, self).save(request)
         username = (self.cleaned_data['first_name'][0].upper() +
                      self.cleaned_data['last_name'].upper())
+        self.cleaned_data['username'] = username
+        user = super(CustomSignupForm,self).save(request)
 
         user2 = Usuarios(IdUsuario=username,
                          NombreUsuario=self.cleaned_data['first_name'].strip(),

@@ -4,7 +4,7 @@ from django.db import connection
 from django.contrib import messages
 from .models import ItemOrdenesCliente
 from .form import AddOrderForm
-from .models import Localidades,Colonias,EntidadesFederativas,CodigosPostales
+from .models import Localidades,Colonias,EntidadesFederativas,Usuarios,ContactoMedios
 from cart.cart import Cart
 
 # Create your views here.
@@ -12,6 +12,11 @@ from cart.cart import Cart
 def add_order(request):
     if request.user.is_authenticated:
         cart = Cart(request)
+        userCliente = Usuarios.objects.get(IdUsuario = request.user)
+        emailCliente = ContactoMedios.objects.get(UsuarioContactoMedio = userCliente,TipoMedioContacto=178)
+        numeroTelefonicoCliente = ContactoMedios.objects.get(UsuarioContactoMedio = userCliente, TipoMedioContacto = 169)
+
+
         if request.method == 'POST':
             form = AddOrderForm(request.POST)
             if form.is_valid():
@@ -22,7 +27,14 @@ def add_order(request):
                     cart.clean_cart()
                     return render(request,'orders/created.html',{'orden':order})
         else:
-            form = AddOrderForm()
+            form = AddOrderForm(initial={
+                'UsuarioOrdenCliente' : userCliente,
+                'NombreOrdenCliente' : userCliente.NombreUsuario,
+                'ApellidoPaternoOrdenCliente' : userCliente.ApellidoPaternoUsuario,
+                'ApellidoMaternoOrdenCliente' : userCliente.ApellidoMaternoUsuario,
+                'CorreoElectronicoOrdenCliente' : emailCliente.DatoTipoMedioContacto,
+                'NumeroTelefonicoOrdenCliente' : numeroTelefonicoCliente.DatoTipoMedioContacto,
+            })
         return render(request,'orders/create.html',{'carrito':cart,'formulario':form})
     else:
         messages.error(request,'Por favor, es necesario iniciar sesión para continuar con su compra')
