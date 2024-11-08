@@ -6,6 +6,7 @@ from .models import ItemOrdenesCliente
 from .form import AddOrderForm
 from .models import Localidades,Colonias,EntidadesFederativas,Usuarios,ContactoMedios
 from cart.cart import Cart
+import random
 
 # Create your views here.
 
@@ -27,13 +28,23 @@ def add_order(request):
                     cart.clean_cart()
                     return render(request,'orders/created.html',{'orden':order})
         else:
+            result = "NOK"
+            ordenId = None
+            while result != "OK":
+                ordenId = random.randint(10**6,10**7)
+                with connection.cursor() as cursor:
+                    cursor.execute("SELECT fn_ValidarIdOrdenCuenta(%s)",params=[ordenId])
+                    result = cursor.fetchone()[0]
+
             form = AddOrderForm(initial={
+                'IdOrdenCliente' : ordenId,
                 'UsuarioOrdenCliente' : userCliente,
                 'NombreOrdenCliente' : userCliente.NombreUsuario,
                 'ApellidoPaternoOrdenCliente' : userCliente.ApellidoPaternoUsuario,
                 'ApellidoMaternoOrdenCliente' : userCliente.ApellidoMaternoUsuario,
                 'CorreoElectronicoOrdenCliente' : emailCliente.DatoTipoMedioContacto,
                 'NumeroTelefonicoOrdenCliente' : numeroTelefonicoCliente.DatoTipoMedioContacto,
+                'UsuarioAlta' : userCliente
             })
         return render(request,'orders/create.html',{'carrito':cart,'formulario':form})
     else:

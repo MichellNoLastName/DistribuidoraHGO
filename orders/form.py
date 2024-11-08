@@ -1,10 +1,10 @@
-import random
 from django import forms
 from django.db import connection
-from .models import OrdenesCliente,EntidadesFederativas,Localidades,Colonias,Usuarios,ContactoMedios
+from .models import OrdenesCliente,EntidadesFederativas,Localidades,Colonias,Usuarios
 
 class AddOrderForm(forms.ModelForm):
     IdOrdenCliente = forms.IntegerField(label="Orden")
+    UsuarioOrdenCliente = forms.ModelChoiceField(queryset=Usuarios.objects.all(), empty_label="Seleccione un usuario")
     NombreOrdenCliente = forms.CharField(label="Nombre Completo",widget=forms.TextInput(attrs={'class':'form-control'}),required=True)
     ApellidoPaternoOrdenCliente = forms.CharField(label="Apellido Paterno",widget=forms.TextInput(attrs={'class':'form-control'}))
     ApellidoMaternoOrdenCliente = forms.CharField(label="Apellido Materno",widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
@@ -14,15 +14,16 @@ class AddOrderForm(forms.ModelForm):
     )
     CodigoPostalOrdenCliente = forms.IntegerField(label="Código Postal (Escribe tu código postal y presiona Enter para validarlo)",widget=forms.NumberInput(attrs={'class':'form-control','type': 'tel', 'pattern': '\d{5}', 'title': 'El Código Postal no es correcto'}))
     EntidadFederativaOrdenCliente = forms.ModelChoiceField(queryset=EntidadesFederativas.objects.all().order_by('NombreEntidadFederativa'))
-    LocalidadOrdenCliente = forms.ModelChoiceField(queryset=Localidades.objects.none())
-    ColoniaOrdenCliente = forms.ModelChoiceField(queryset=Colonias.objects.none())
+    LocalidadOrdenCliente = forms.ModelChoiceField(queryset=Localidades.objects.all())
+    ColoniaOrdenCliente = forms.ModelChoiceField(queryset=Colonias.objects.all())
     DomicilioOrdenCliente = forms.CharField(label="Domicilio",widget=forms.Textarea(attrs={'class':'form-control'}))
+    UsuarioAlta = forms.ModelChoiceField(queryset=Usuarios.objects.all(), empty_label="Seleccione un usuario")
 
     class Meta:
         model = OrdenesCliente
-        fields = ['IdOrdenCliente','NombreOrdenCliente','ApellidoPaternoOrdenCliente','ApellidoMaternoOrdenCliente',
+        fields = ['IdOrdenCliente','UsuarioOrdenCliente','NombreOrdenCliente','ApellidoPaternoOrdenCliente','ApellidoMaternoOrdenCliente',
                   'CorreoElectronicoOrdenCliente','NumeroTelefonicoOrdenCliente','CodigoPostalOrdenCliente',
-                  'EntidadFederativaOrdenCliente','LocalidadOrdenCliente','ColoniaOrdenCliente','DomicilioOrdenCliente']
+                  'EntidadFederativaOrdenCliente','LocalidadOrdenCliente','ColoniaOrdenCliente','DomicilioOrdenCliente','UsuarioAlta']
 
     def __init__(self,*args,**kwargs):
         super(AddOrderForm, self).__init__(*args,**kwargs)
@@ -38,31 +39,8 @@ class AddOrderForm(forms.ModelForm):
         self.fields['ColoniaOrdenCliente'].widget.attrs['disabled'] = 'disabled'
         self.fields['DomicilioOrdenCliente'].widget.attrs['placeholder'] = "Num Exterior, Num Interior, Calle y detalles de domicilio"
 
-        self.fields['IdOrdenCliente'].widget.attrs['disabled'] = True
-
-        result = "NOK"
-        while result != "OK":
-            ordenId = random.randint(10**6,10**7)
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT fn_ValidarIdOrdenCuenta(%s)",params=[ordenId])
-                result = cursor.fetchone()[0]
-
-
-        self.fields['IdOrdenCliente'].initial = ordenId
-
-        if 'idEntidadFederativa' in self.data:
-            try:
-                idEntidadFederativa = int(self.data.get('idEntidadFederativa'))
-                self.fields['LocalidadOrdenCliente'].queryset = Localidades.objects.filter(IdEntidadFederativa = idEntidadFederativa).order_by('NombreLocalidad')
-            except(ValueError,TypeError):
-                pass
-
-    def save(self,request):
-        userCliente = Usuarios.objects.get(IdUsuario = request.user)
-        emailCliente = ContactoMedios.objects.get(UsuarioContactoMedio = userCliente,TipoMedioContacto=178)
-        numeroTelefonicoCliente = ContactoMedios.objects.get(UsuarioContactoMedio = userCliente, TipoMedioContacto = 169)
-
-        self.cleaned_data['CorreoElectronicoOrdenCliente'] = emailCliente
-        self.cleaned_data['NumeroTelefonicoOrdenCliente'] = numeroTelefonicoCliente
-
-        super(AddOrderForm,self).save(request)
+        self.fields['IdOrdenCliente'].widget.attrs.update({'style': 'pointer-events: none;'})
+        self.fields['UsuarioOrdenCliente'].label = ''
+        self.fields['UsuarioOrdenCliente'].widget.attrs.update({'style': 'display: none;'})
+        self.fields['UsuarioAlta'].label = ''
+        self.fields['UsuarioAlta'].widget.attrs.update({'style': 'display: none;'})

@@ -136,7 +136,7 @@ class ContactoMedios(models.Model):
 
 class OrdenesCliente(models.Model):
     IdOrdenCliente = models.IntegerField(db_index=True,unique=True)
-    UsuarioOrdenCliente = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuariosOrdenesCliente',on_delete=models.PROTECT,db_column='UsuarioOrdenCliente',db_index=True,null=True)
+    UsuarioOrdenCliente = models.ForeignKey(Usuarios,to_field='IdUsuario',related_name='usuariosOrdenesCliente',on_delete=models.PROTECT,db_column='UsuarioOrdenCliente')
     NombreOrdenCliente = models.CharField(max_length=30)
     ApellidoPaternoOrdenCliente = models.CharField(max_length=30)
     ApellidoMaternoOrdenCliente = models.CharField(max_length=30,null=True,blank=True)
