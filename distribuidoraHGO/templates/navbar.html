@@ -11,10 +11,12 @@
                 </a>
             </div>
             <div class="formSearchMovil">
-                <input type="text" class="inputSearchMovil" placeholder="¿Algún producto?">
+                <input type="text" id="inputSearchMovil" class="inputSearchMovil" placeholder="¿Algún producto?">
                 <button class="btnSearchMovil">
                   <i class="fas fa-search"></i>
                 </button>
+                <ul id="result-movil" class="z-1 position-absolute product-list-live">
+                </ul>
             </div>
             <div class="account_cart_movil">
                 <a href="{% url 'cart:cart_detail' %}">
@@ -46,10 +48,14 @@
                     </ul>
                   </li>
                 </ul>
-                <form class="d-flex ms-auto me-auto mb-0 mt-3 align-items-center" role="search" id="formSearch">
-                    <input id="form_navbarSearch" class="form-control me-1 d-inline" type="search" placeholder="¿Buscas algún producto o marca?" aria-label="Search">
-                    <button id="btn_navbarSearch" class="btn mb-3" type="submit"><i class="fa-brands fa-searchengin"></i></button>
-                </form>
+                <div class="container-sm-form px-0 d-flex justify-content-end align-items-center">
+                    <form class="d-flex ms-auto me-auto mb-0 mt-3 align-items-center" role="search" id="formSearch">
+                        <input id="form_navbarSearch" class="form-control me-1 d-inline" type="search" placeholder="¿Buscas algún producto o marca?" aria-label="Search">
+                        <button id="btn_navbarSearch" class="btn mb-3" type="submit"><i class="fa-brands fa-searchengin"></i></button>
+                    </form>
+                    <ul id="result" class="z-1 position-absolute product-list-live">
+                    </ul>
+                </div>
                 <ul class="navbar-nav navbar2 me-lg-auto ms-lg-0 me-0 ms-0 mb-2 mb-lg-0 mt-1">
                     <li class="nav-item">
                         <a id="navSecond" class="nav-link" href="{% url 'account_login' %}">
