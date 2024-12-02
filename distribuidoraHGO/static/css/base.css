@@ -94,25 +94,6 @@ body{
     color: black;
 }
 
-label {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    transition: all 0.3s ease; /* Efecto suave para el movimiento */
-    color: #888;
-    font-size: 16px;
-    white-space: nowrap; /* Evita que el texto se rompa */
-}
-
-input:focus + label,
-input:not(:placeholder-shown) + label {
-  left: 60%; /* Se mueve un 60% hacia la derecha */
-  font-size: 12px;
-  color: #5a5a5a;
-}
-
 /*Botones del segundo navbar*/
 #navSecond:hover{
     background-color: #343a40;
@@ -190,7 +171,7 @@ footer{
 }
 
 .container-sm-form{
-    width: 20vw;
+    width: 25vw;
   }
 
 .product-list-live {
@@ -259,14 +240,6 @@ footer{
 
     .formSearchMovil{
         display: inline;
-    }
-
-    #form_navbarSearch, #btn_navbarSearch{
-        display:none;
-    }
-
-    #formSearch{
-       display: none;
     }
 
     #navSecond{

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container-fluid ms-4 mt-4">
+<div class="container-fluid ms-md-2 mt-4">
     <div class="row">
         <div class="col-md-2 list-categories pt-2">
             <h3 class="mb-3 text-center products-subtitles">Categorías</h3>
@@ -20,15 +20,15 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="col-md-9 pt-2">
+        <div class="col-md-9 pt-2 list-products">
             <h3 class="mb-4 products-subtitles">{% if categoria %}{{ categoria.DescripcionCategoria }}
                 {% else %}Productos{% endif %}
             </h3>
-            <div class="row">
+            <div class="row list-list-products">
                 {% for articulo in articulos %}
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                            <a href="{{ articulo.get_absolute_url }}">
+                    <div class="col-lg-4 col-12 col-sm-12 mb-4">
+                        <div class="card h-100 mx-auto">
+                            <a href="{{ articulo.get_absolute_url }}" class="">
                                 <img src="{% if articulo.ImagenArticulo %}{{ articulo.ImagenArticulo.url }}{% else %}{% static 'images/no-image.jpg' %}{% endif %}"
                                      alt="{{ articulo.NombreArticulo }}" class="card-img-top" loading="lazy">
                             </a>
@@ -43,16 +43,16 @@
                                 {% endfor %}
                             </div>
                             <div class="card-footer text-center">
-                                <form action="{% url 'cart:add_cart' articulo.IdArticulo %}" method="post" class="d-inline">
+                                <form action="{% url 'cart:add_cart' articulo.IdArticulo %}" method="post" class="d-inline mt-4">
                                     {% csrf_token %}
-                                        <button type="submit" name="action" value="add" class="btn btn-success">
+                                        <button type="submit" name="action" value="add" class="btn btn-success mt-2">
                                             <i class="fas fa-cart-plus"></i> Añadir al carrito
                                         </button>
-                                        <button type="submit" name="action" value="buy" class="btn btn-warning">
+                                        <button type="submit" name="action" value="buy" class="btn btn-warning mt-2">
                                             <i class="fas fa-shop"></i> Comprar
                                         </button>
                                 </form>
-                                <div class="container mt-2 col-5 text-center">
+                                <div class="container mt-2 col-5 col-md-6 text-center">
                                     <a href="{{ articulo.get_absolute_url }}" class="btn btn-primary d-block btn-seemore">Ver más</a>
                                 </div>
                             </div>

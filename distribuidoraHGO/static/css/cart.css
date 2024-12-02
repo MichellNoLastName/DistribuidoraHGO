@@ -45,6 +45,25 @@
     .no-cart-message{
         margin-top: 30%;
     }
+
+    .cart-list{
+        margin-top: 20%;
+    }
+
+    .table {
+        font-size: 12px; /* Reduce el tamaño del texto */
+      }
+    .table th,.table td {
+        padding: 5px; /* Reduce el padding dentro de las celdas */
+      }
+
+    .align-middle .btn-outline-primary{
+        font-size: 12px;
+    }
+
+    .align-middle .btn-danger{
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 600px){
@@ -55,5 +74,41 @@
 
     .no-cart-message h3{
         font-size: 1em;
+    }
+
+    .cart-list{
+        margin-top: 20%;
+    }
+
+    .cart-list h3{
+        font-size: 1.1em;
+    }
+
+    .cart-list .text-right a{
+        font-size: 0.7em;
+    }
+
+    .table {
+        font-size: 0.5em; /* Reduce el tamaño del texto */
+      }
+    .table th,.table td {
+        padding: 5px; /* Reduce el padding dentro de las celdas */
+      }
+
+    .table img{
+        width: 50px;
+        height: auto;
+    }
+
+    .align-middle .btn-outline-primary{
+        font-size: 0.8em;
+    }
+
+    input[type='number']{
+        font-size: 0.8em;
+    }
+
+    .align-middle .btn-danger{
+        font-size: 0.8em;
     }
 }

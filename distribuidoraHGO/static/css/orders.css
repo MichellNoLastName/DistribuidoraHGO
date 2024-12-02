@@ -64,3 +64,47 @@ input[type="number"]::-webkit-inner-spin-button {
     content: '*';
     color: red;
 }
+
+.order-form label{
+    font-weight: bold;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .order{
+        margin-top: 12%;
+    }
+
+    .order-body .order-lg-last{
+        margin-bottom: 10%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .order{
+        margin-top: 20%;
+    }
+
+    .order-header h3{
+        font-size: 1.2em;
+    }
+
+    .order-info h4{
+        font-size: 1.1em;
+    }
+
+    .list-group-item{
+        font-size: 13px;
+    }
+
+    form h4{
+        font-size: 1.1em;
+    }
+
+    form div label{
+        font-size: 0.9em;
+    }
+
+    form div input{
+        font-size: 10px;
+    }
+}
