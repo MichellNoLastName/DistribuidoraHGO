@@ -36,7 +36,7 @@ def get_product(idArticulo,month,year,slug):
     else:
         return None
 
-def products_list(request, slug=None):
+def products_list(request, slug=None,id_categoryLike=None):
     category = None
     categories = CategoriasArticulos.objects.all()
     prices = get_prices(pIdListaPrecio=3)
@@ -44,17 +44,25 @@ def products_list(request, slug=None):
     year = now.year
     month = now.month
     products = get_products(month,year)
+    searchLike = False
+
+    if id_categoryLike != None:
+        products = products.filter(IdCategoria__IdCategoria__icontains=id_categoryLike)
+        prices = get_prices(pIdListaPrecio=3)
+        searchLike = True
 
     if slug:
         category = get_object_or_404(CategoriasArticulos,SlugCategoria=slug)
         products = products.filter(IdCategoria=category)
         prices = get_prices(pIdListaPrecio=3,pIdCategoria=category.IdCategoria)
 
+
     return render(request, 'store/products/list.html',
                   {'categoria': category,
                   'categorias':categories,
                   'articulos':products,
-                  'precios': prices})
+                  'precios': prices,
+                  'busquedaLike':searchLike})
 
 def product_detail(request,IdArticulo_id,slug):
     now = datetime.datetime.now()
