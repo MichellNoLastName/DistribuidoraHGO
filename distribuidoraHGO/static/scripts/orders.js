@@ -1,10 +1,10 @@
 'use strict'
 
-document.addEventListener('keydown',(e) =>{
+/*document.addEventListener('keydown',(e) =>{
     if(e.key ==='Enter'){
         e.preventDefault()
     }
-})
+})*/
 
 const entidadFederativa = document.querySelector('[name="EntidadFederativaOrdenCliente"]')
 const localidad = document.querySelector('[name="LocalidadOrdenCliente"]')

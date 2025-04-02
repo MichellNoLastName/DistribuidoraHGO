@@ -5,7 +5,11 @@
     font-family: 'Nunito Sans', sans-serif;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
-    caret-color: transparent;
+}
+
+*:not(input):not(textarea):not(select) {
+    user-select: none;
+    caret-color: transparent; /* Oculta el cursor de texto */
 }
 
 .hidden{

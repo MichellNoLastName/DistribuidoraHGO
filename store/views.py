@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.db.models import F
 from django.db import connection
 from cart.form import AddProductForm
-from .models import CategoriasArticulos,AlmacenArticuloExistencias,Articulos,ListaPreciosArticulos
+from .models import CategoriasArticulos,AlmacenArticuloExistencias,Articulos
 import datetime
 
 # Create your views here.
@@ -75,3 +75,24 @@ def product_detail(request,IdArticulo_id,slug):
                   {'articulo':product,
                    'precio' : price,
                    'form_carrito':cart_form})
+
+
+def products_list_like(request):
+    busquedaLike = request.GET.get("busquedaLike")
+    searchLike = True
+    with connection.cursor() as cursor:
+        cursor.execute("CALL sp_ObtenerArticulosLike(%s)",[busquedaLike])
+        result = cursor.fetchall()
+        columns = [column[0] for column in cursor.description]
+        # Convertir los resultados en una lista de diccionarios
+        products = [dict(zip(columns, row)) for row in result]
+
+    products = Articulos.objects.filter(IdArticulo__in = [product['IdArticulo'] for product in products])
+    prices = get_prices(pIdListaPrecio=3)
+
+    return render(request, 'store/products/list.html',
+                  {'categoria': None,
+                  'categorias':None,
+                  'articulos':products,
+                  'precios': prices,
+                  'busquedaLike':searchLike})

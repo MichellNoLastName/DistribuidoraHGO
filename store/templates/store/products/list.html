@@ -21,8 +21,13 @@
             </ul>
         </div>
         <div class="col-md-9 pt-2 list-products">
-            <h3 class="mb-4 products-subtitles">{% if categoria %}{{ categoria.DescripcionCategoria }}
-                {% else %}Productos{% endif %}
+            <h3 class="mb-4 products-subtitles">
+                {% if articulos %}
+                    {% if categoria %}{{ categoria.DescripcionCategoria }}
+                    {% else %}Productos{% endif %}
+                {% else %}
+                    Sin coincidencias en la busqueda
+                {% endif %}
             </h3>
             <div class="row list-list-products">
                 {% for articulo in articulos %}
