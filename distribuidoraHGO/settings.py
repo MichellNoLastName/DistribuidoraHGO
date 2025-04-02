@@ -92,10 +92,9 @@ WSGI_APPLICATION = "distribuidoraHGO.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': os.environ.get('MYSQLDATABASE'),
         'USER': os.environ.get('MYSQLUSER'),
         'PASSWORD': os.environ.get('MYSQLPASSWORD'),
