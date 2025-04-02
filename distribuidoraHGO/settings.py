@@ -106,7 +106,7 @@ DATABASES = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': os.environ.get('MYSQLDATABASE'),
         'USER': os.environ.get('MYSQLUSER'),
         'PASSWORD': os.environ.get('MYSQLPASSWORD'),
