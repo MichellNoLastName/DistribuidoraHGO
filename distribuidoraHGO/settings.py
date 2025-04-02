@@ -30,7 +30,7 @@ SECRET_KEY = "django-insecure-!4vk)k5tylb_b1pbn67l(g1#e%j(nzreoq3za&4)3_8)qw7&de
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.6',
+ALLOWED_HOSTS = ['localhost',
                  '127.0.0.1']
 
 
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -90,16 +91,6 @@ WSGI_APPLICATION = "distribuidoraHGO.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-db_user = ''
-db_pass = ''
-
-if os.name == 'nt':
-    db_user = os.getenv('MYSQL_MSI_USER')
-    db_pass = os.getenv('MYSQL_MSI_PASS')
-else:
-    db_user = os.getenv('MYSQL_ACER_USER')
-    db_pass = os.getenv('MYSQL_ACER_PASS')
 
 DATABASES = {
     "default": {
@@ -154,11 +145,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'distribuidoraHGO/static/staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'distribuidoraHGO/static/staticfiles')
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'distribuidoraHGO/static'),
+   os.path.join(BASE_DIR,'distribuidoraHGO/static'),
+   #BASE_DIR / "staticfiles",
 ]
+
+STORAGES = {
+    "default":{
+        "BACKEND" : "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 
@@ -189,7 +192,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
-ACCOUNT_USERNAME_BLACKLIST = ['admin','god','usuario','username','nombre','name']
+ACCOUNT_USERNAME_BLACKLIST = ['admin','god','usuario','username','nombre','name','root']
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

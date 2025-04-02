@@ -1,0 +1,483 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+*:not(input):not(textarea):not(select) {
+    user-select: none;
+    caret-color: transparent; /* Oculta el cursor de texto */
+}
+
+.hidden{
+    overflow: hidden;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.formSearchMovil{
+    display: none;
+}
+
+.btnSearchMovil{
+    display: inline;
+    background-color: #fff;
+    border-radius: 10%;
+    border: 0.01px solid gray;
+    cursor: pointer;
+    font-size: 15px;
+    height: 40px;
+    width: 40px;
+    transition: transform 0.8s ease;
+}
+
+
+.formSearchMovil .inputSearchMovil {
+    background-color: #fff;
+    border: 0;
+    display: inline;
+    font-size: 14px;
+    height: 40px;
+    width: 0px;
+    transition: width 0.8s ease;
+  }
+
+.btnSearchMovil:focus,.inputSearchMovil:focus{
+    outline:none;
+}
+
+.formSearchMovil.active .inputSearchMovil{
+    width: 130px;
+}
+
+.formSearchMovil.active .btnSearchMovil{
+    transform: translateX(1%);
+}
+
+
+#spinner-container {
+    display: flex;
+    height: 100vh;
+}
+
+#navbar{
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,177,255,1) 100%);
+    font-weight: 700;
+    font-size: 1.4cap;
+}
+
+.navbar-container{
+    max-width: 1350px;
+    width: 100%;
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+
+.icono-navbar{
+    width:120px;
+    height:72px;
+}
+
+
+.navbar-toggler {
+    background-color: white !important; /* Cambia el color de fondo del botón */
+    color: black !important; /* Cambia el color del texto del botón */
+    /* Otros estilos que desees aplicar */
+}
+
+#form_navbarSearch{
+    width: 20vw;
+    font-size: 17px;
+}
+#btn_navbarSearch{
+    border: none;
+    color: black;
+}
+
+/*Botones del segundo navbar*/
+#navSecond:hover{
+    background-color: #343a40;
+    color: white;
+}
+/*Icono de busqueda rapida*/
+.fa-searchengin{
+    font-size: 1.5em;
+}
+
+/*icono de Whatsapp*/
+.fa-whatsapp{
+    font-size: 1.8em;
+    color:green;
+    background-color: transparent;
+    border-radius: 100% !important;
+}
+/*Icono de Facebook*/
+.fa-facebook{
+    font-size: 1.8em;
+    border-radius:100% !important;
+    background-color: white;
+    color:#3b5998;
+}
+
+.account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
+    display: none;
+    color:#0098db;
+}
+
+#btn_navbarSearch:hover {
+    background-color: #343a40; /* Cambia el color de fondo cuando se pasa el mouse */
+    color: #fff; /* Cambia el color del texto cuando se pasa el mouse */
+    /* Otros estilos que desees aplicar al pasar el mouse sobre el botón */
+  }
+
+/*footer*/
+footer{
+    font-size: 13px;
+    box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+}
+
+.img-footer{
+    width: 15em;
+    height: 10em;
+}
+
+.fa-footer{
+    color:#0098db !important;
+    margin-top: 1em;
+}
+
+.footer_subtitles{
+    font-weight: bold;
+    color:#0098db;
+}
+
+.footer-top{
+    display: none !important;
+
+}
+
+.product-list .item {
+    width: 50%;
+    padding: 10px 20px 10px 0;
+    float: left;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.product-list .item img {
+    width: 100%;
+}
+
+.container-sm-form{
+    width: 25vw;
+  }
+
+.product-list-live {
+    background-color: #fbfefb;
+    list-style-type: none;
+    top:10vh;
+    left: 30vw;
+    max-height: 40vh;
+    max-width: 35vw;
+    overflow-y: auto;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff #52cbff;
+  }
+
+  .product-list-live li {
+    display: flex;
+    padding: 20px;
+  }
+
+  .product-list-live img {
+    border-radius: 50%;
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+  }
+
+  .product-list-live .product-info {
+    margin-left: 10px;
+  }
+
+  .product-list-live .product-info h5 {
+    color: black;
+    font-weight: 500;
+    margin: 0 0 10px;
+  }
+
+  .product-list-live .product-info p {
+    color: black;
+    font-size: 12px;
+  }
+
+  .product-list-live li:not(:last-of-type) {
+    border-bottom: 1px solid #eee;
+  }
+
+  .product-list-live li.hide {
+    display: none;
+  }
+
+
+
+/*Medias querys*/
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .icono-navbar{
+        width:85px;
+        height:48px;
+    }
+
+    .navbar{
+        font-size: 13px;
+    }
+
+
+    #form_navbarSearch{
+        font-size: 13px;
+    }
+
+    .formSearchMovil{
+        display: inline;
+    }
+
+    #navSecond{
+        text-align: center;
+    }
+
+    #navbar{
+        background: rgb(9,9,9);
+        background: linear-gradient(0deg, rgba(9,9,9,1) 0%, rgba(255,255,255,1) 0%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000; /* Asegura que el navbar esté por encima de otros elementos */
+    }
+
+    .navbar2{
+        display: none !important;
+    }
+
+    .navbar-nav{
+        margin-top: 5%;
+    }
+
+    .account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
+        display: block;
+        font-size: 1.8em;
+    }
+
+    .product-list-live{
+        max-width: 70vw;
+        top: 8vh;
+        left: 15vw;
+    }
+
+    .product-list-live li{
+        padding: 5px;
+    }
+
+    .product-list-live img{
+        height: auto;
+        width: 20%;
+    }
+
+    .product-list-live .product-info {
+        margin-left: 5px;
+    }
+
+    .product-list-live .product-info h5 {
+        margin: 0 0 5px;
+        font-size: 15px;
+    }
+
+    .product-list-live .product-info p {
+        font-size: 9px;
+    }
+
+    footer .footer-top{
+        display: inline-block !important;
+    }
+    footer .contact-footer-left{
+        display: none;
+    }
+
+    footer .footer-right{
+        border: none;
+    }
+
+    .img-footer{
+        width: 37% !important;
+        height: 80% !important;
+    }
+
+    .footer_subtitles{
+        text-align: start;
+    }
+
+    .footer_text{
+        text-align: justify;
+    }
+
+    footer .fa-whatsapp{
+        font-size: 1.4em;
+    }
+
+    footer .fa-facebook{
+        font-size: 1.4em;
+    }
+
+    footer{
+        font-size: 13px;
+        box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+        -webkit-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+        -moz-box-shadow: 0px -5px 9px 0px rgba(0,0,0,0.05);
+    }
+
+    footer .footer_subtitles{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 600px){
+
+    #form_navbarSearch{
+        width: 18em;
+        height: 2em;
+        font-size: 10px;
+    }
+
+    #btn_navbarSearch{
+        font-size: 10px;
+    }
+
+    .btnSearchMovil{
+        font-size: 1.3em;
+        height: 2.2em;
+        width: 2.2em;
+    }
+
+    .formSearchMovil .inputSearchMovil{
+        font-size: 1em;
+    }
+
+    .formSearchMovil.active .inputSearchMovil{
+        width: 10em;
+    }
+
+    .icono-navbar{
+        width:50px;
+        height:24px;
+    }
+
+    .account_cart_movil .fa-circle-user,.account_cart_movil .fa-cart-shopping{
+        display: block;
+        font-size: 1.6em;
+    }
+
+    .product-list-live{
+        max-width: 80vw;
+        top: 8vh;
+        left: 15vw;
+    }
+
+    .product-list-live li{
+        padding: 5px;
+    }
+
+    .product-list-live .product-info {
+        margin-left: 5px;
+    }
+
+    .product-list-live .product-info h5 {
+        margin: 0 0 5px;
+        font-size: 12px;
+    }
+
+    .product-list-live .product-info p {
+        font-size: 8px;
+    }
+
+    footer .footer-top{
+        display: inline-block !important;
+    }
+    footer .contact-footer-left{
+        display: none;
+    }
+
+    footer .footer-right{
+        border: none;
+    }
+
+    .img-footer{
+        width: 37% !important;
+        height: 80% !important;
+    }
+
+    .footer{
+        font-size: 6px;
+    }
+
+    .footer .footer_subtitles{
+        font-size: 9px;
+        text-align: start;
+    }
+
+    footer .fa-footer{
+        font-size: 9px;
+    }
+
+    footer .fa-whatsapp{
+        font-size: 16px;
+    }
+
+    footer .fa-facebook{
+        font-size: 16px;
+    }
+
+    .formSearchMovil{
+        display: inline;
+    }
+
+    #form_navbarSearch, #btn_navbarSearch{
+        display:none;
+    }
+
+    #formSearch{
+       display: none;
+    }
+
+    #navSecond{
+        text-align: center;
+    }
+
+    #navbar{
+        background: rgb(9,9,9);
+        background: linear-gradient(0deg, rgba(9,9,9,1) 0%, rgba(255,255,255,1) 0%);
+        position: fixed;
+        font-size: 12px;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000; /* Asegura que el navbar esté por encima de otros elementos */
+    }
+
+    .navbar2{
+        display: none !important;
+    }
+
+    .navbar-nav{
+        margin-top: 5%;
+    }
+
+}

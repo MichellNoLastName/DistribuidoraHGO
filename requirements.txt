@@ -7,7 +7,6 @@ charset-normalizer==3.3.2
 crispy-bootstrap4==2024.1
 cryptography==43.0.0
 Django==4.2.8
-django-admin-material-dashboard==1.0.10
 django-allauth==0.63.6
 django-crispy-forms==2.2
 django-filebrowser==4.0.3
@@ -20,6 +19,7 @@ mysqlclient==2.2.1
 pillow==10.3.0
 protobuf==4.21.12
 pycparser==2.22
+python-dotenv==1.0.1
 pytz==2024.1
 requests==2.32.3
 six==1.16.0
@@ -27,3 +27,4 @@ sqlparse==0.4.4
 typing_extensions==4.9.0
 tzdata==2023.3
 urllib3==2.2.2
+whitenoise==6.7.0

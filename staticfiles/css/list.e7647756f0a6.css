@@ -1,0 +1,122 @@
+/* Estilo de la lista de categorías */
+.list-categories{
+    border: 1px solid gray;
+    border-radius: 10px;
+    background: #cae9ff;
+}
+
+.products-subtitles{
+    font-weight: 700;
+    color: #1b4965;
+}
+
+.list-group a {
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.list-group-item {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 700;
+}
+
+.list-group-item.active {
+    background-color: #1b4965 !important;
+    border: none;
+}
+
+.list-group-item:hover {
+    background-color: #dee2e6;
+}
+
+/* Cartas de productos */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.card-img-top:hover {
+    opacity: 0.9;
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #28a745;
+}
+
+/* Botones */
+.card-footer .btn{
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-seemore{
+    background-color: #1b4965 !important;
+    margin: 0 auto;
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .list-categories{
+        display: none;
+    }
+
+    .list-products{
+        margin-top: 4em !important;
+    }
+
+    .card{
+        width: 80%;
+        height: 80%;
+    }
+
+    .card img{
+        display: flex;
+        width: 80%;
+        height: auto;
+        justify-self: center;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .list-categories{
+        display: none;
+    }
+
+    .list-products{
+        margin-top: 4em !important;
+    }
+
+    .card{
+        width: 90%;
+        height: 80%;
+    }
+
+    .card img{
+        display: flex;
+        width: 85%;
+        height: auto;
+        justify-self: center;
+    }
+}
