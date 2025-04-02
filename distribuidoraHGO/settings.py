@@ -92,17 +92,6 @@ WSGI_APPLICATION = "distribuidoraHGO.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-"""
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "distribuidorahgo_20231220",
-        "USER":"root",
-        "PASSWORD":"admin",
-        "HOST":"localhost",
-        "PORT":"3306"
-    }
-}"""
 
 DATABASES = {
     'default': {
