@@ -1,0 +1,1 @@
+web: gunicorn distribuidoraHGO.wsgi
