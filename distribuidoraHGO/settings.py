@@ -103,7 +103,6 @@ WSGI_APPLICATION = "distribuidoraHGO.wsgi.application"
     }
 }"""
 
-print(dj_database_url.parse(os.environ.get('JAWSDB_URL')))
 DATABASES = {
      'default': dj_database_url.parse(os.environ.get('JAWSDB_URL'))
 }
