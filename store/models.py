@@ -198,7 +198,7 @@ class ImpuestoTasas(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'impuestostasas'
+        db_table = 'impuestotasas'
         verbose_name = 'ImpuestoTasa'
         verbose_name_plural = 'ImpuestoTasas'
         ordering = ('-IdImpuesto',)
