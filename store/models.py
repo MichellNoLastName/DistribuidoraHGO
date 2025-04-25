@@ -29,7 +29,7 @@ class Almacenes(models.Model):
 
     class Meta:
         ordering = ('-IdAlmacen',)
-        db_table = "Almacenes"
+        db_table = "almacenes"
         verbose_name = 'Almacen'
         verbose_name_plural = 'Almacenes'
 
@@ -57,10 +57,10 @@ class ProductosSAT(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = "ProductosSAT"
+        db_table = "productossat"
         ordering = ('-IdProductoSAT',)
         verbose_name = 'ProductoSAT'
-        verbose_name_plural = 'ProductosSAT',
+        verbose_name_plural = 'ProductosSAT'
 
     def __str__(self):
         return f'{self.DescripcionProductoSAT} ({self.IdProductoSAT})'
@@ -82,7 +82,7 @@ class UnidadesSAT(models.Model):
     Version = models.IntegerField()
 
     class Meta:
-        db_table = "UnidadesSAT"
+        db_table = "unidadessat"
         ordering = ('-IdUnidadSAT',)
         verbose_name = 'UnidadSAT'
         verbose_name_plural = 'UnidadesSAT'
@@ -108,7 +108,7 @@ class CategoriasArticulos(models.Model):
     Version = models.IntegerField()
 
     class Meta:
-        db_table = "CategoriasArticulos"
+        db_table = "categoriasarticulos"
         ordering = ('-IdCategoria',)
         verbose_name = 'CategoriaArticulos'
         verbose_name_plural = 'CategoriasArticulos'
@@ -142,7 +142,7 @@ class Catalogos(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'Catalogos'
+        db_table = 'catalogos'
         ordering = ('-IdCatalogo',)
         verbose_name = 'Catalogo'
         verbose_name_plural = 'Catalogos'
@@ -168,7 +168,7 @@ class Impuestos(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'Impuesto'
+        db_table = 'impuestos'
         ordering = ('-IdImpuesto',)
         verbose_name = 'Impuesto'
         verbose_name_plural = 'Impuestos'
@@ -198,7 +198,7 @@ class ImpuestoTasas(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'ImpuestoTasas'
+        db_table = 'impuestotasas'
         verbose_name = 'ImpuestoTasa'
         verbose_name_plural = 'ImpuestoTasas'
         ordering = ('-IdImpuesto',)
@@ -240,7 +240,7 @@ class CondicionesPago(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'CondicionesPago'
+        db_table = 'condicionespago'
         ordering = ('-IdCondicionPago',)
         verbose_name = 'CondicionPago'
         verbose_name_plural = 'CondicionesPago'
@@ -293,7 +293,7 @@ class Proveedores(models.Model):
         ordering = ('-IdProveedor',)
         verbose_name = 'Proveedor'
         verbose_name_plural = 'Proveedores'
-        db_table = 'Proveedores'
+        db_table = 'proveedores'
 
     def __str__(self):
         return f'{self.DenominacionProveedor} ({self.IdProveedor})'
@@ -360,7 +360,7 @@ class Articulos(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = "Articulos"
+        db_table = "articulos"
         ordering = (('-IdCategoria'),)
         verbose_name = 'Articulo'
         verbose_name_plural = 'Articulos'
@@ -401,7 +401,7 @@ class Divisas(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'Divisas'
+        db_table = 'divisas'
         ordering = ('-IdDivisa',)
         verbose_name = 'Divisa'
         verbose_name_plural = 'Divisas'
@@ -428,7 +428,7 @@ class CostosArticulos(models.Model):
     Version = models.IntegerField()
 
     class Meta:
-        db_table = 'CostosArticulos'
+        db_table = 'costosarticulos'
         verbose_name = 'CostosArticulo'
         verbose_name_plural = 'CostosArticulos'
         index_together = (('IdCategoria','IdArticulo','FechaCosto'),)
@@ -442,7 +442,7 @@ class MarcasCategorias(models.Model):
     IdMarca = models.ForeignKey('MarcasArticulos',on_delete=models.PROTECT,to_field='IdMarca',db_column='IdMarca')
 
     class Meta:
-        db_table = 'MarcasCategorias'
+        db_table = 'marcascategorias'
 
 
 class MarcasArticulos(models.Model):
@@ -459,7 +459,7 @@ class MarcasArticulos(models.Model):
     Version = models.IntegerField()
 
     class Meta:
-        db_table = "MarcasArticulos"
+        db_table = "marcasarticulos"
         ordering = ('-IdMarca',)
         verbose_name = "MarcaArticulos"
         verbose_name_plural = "MarcasArticulos"
@@ -473,7 +473,7 @@ class PresentacionesCategorias(models.Model):
     IdPresentacion = models.ForeignKey('PresentacionesArticulos',on_delete=models.PROTECT,to_field='IdPresentacion',db_column='IdPresentacion')
 
     class Meta:
-        db_table = 'PresentacionesCategorias'
+        db_table = 'presentacionescategorias'
 
 
 class PresentacionesArticulos(models.Model):
@@ -490,7 +490,7 @@ class PresentacionesArticulos(models.Model):
     Version = models.IntegerField()
 
     class Meta:
-        db_table = "PresentacionesArticulos"
+        db_table = "presentacionesarticulos"
         ordering = ('-IdPresentacion',)
         verbose_name = 'PresentacionArticulos'
         verbose_name_plural = 'PresentacionesArticulos'
@@ -518,7 +518,7 @@ class AlmacenArticulos(models.Model):
     Version = models.IntegerField()
 
     class Meta:
-        db_table = "AlmacenArticulos"
+        db_table = "almacenarticulos"
         ordering = ('-IdAlmacen',)
         verbose_name = 'AlmacenArticulo'
         verbose_name_plural = 'AlmacenArticulos'
@@ -567,7 +567,7 @@ class AlmacenArticuloExistencias(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = "AlmacenArticuloExistencias"
+        db_table = "almacenarticuloexistencias"
         ordering = ['IdAlmacen','IdCategoria','IdArticulo']
         verbose_name = 'AlmacenArticuloExistencia'
         verbose_name_plural = 'AlmacenArticuloExistencias'
@@ -616,7 +616,7 @@ class Clientes(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'Clientes'
+        db_table = 'clientes'
         ordering = ('-IdCliente',)
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
@@ -637,7 +637,7 @@ class ListasPrecios(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'ListasPrecios'
+        db_table = 'listasprecios'
         ordering = ('-IdListaPrecio',)
         verbose_name = 'ListaPrecio'
         verbose_name_plural = 'ListasPrecios'
@@ -663,7 +663,7 @@ class ListaPreciosArticulos(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'ListaPreciosArticulos'
+        db_table = 'listapreciosarticulos'
         ordering = ('-IdListaPrecio',)
         verbose_name = 'ListaPreciosArticulos'
         verbose_name_plural = 'ListasPreciosArticulos'
@@ -697,7 +697,7 @@ class ListaPreciosArticuloImpuestos(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'ListaPreciosArticuloImpuestos'
+        db_table = 'listapreciosarticuloImpuestos'
         ordering = ('-IdListaPrecio',)
         verbose_name = 'ListaPreciosArticulosImpuestos'
         verbose_name_plural = 'ListasPreciosArticulosImpuestos'

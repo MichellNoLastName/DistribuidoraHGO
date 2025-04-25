@@ -20,7 +20,7 @@ class EntidadesFederativas(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'EntidadesFederativas'
+        db_table = 'entidadesfederativas'
         verbose_name = 'EntidadFederativa'
         verbose_name_plural = 'EntidadesFederativas'
         ordering = ('-IdEntidadFederativa',)
@@ -44,7 +44,7 @@ class Localidades(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'Localidades'
+        db_table = 'localidades'
         ordering = ('-IdLocalidad',)
         verbose_name='Localidad'
         verbose_name_plural = 'Localidades'
@@ -70,7 +70,7 @@ class CodigosPostales(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'CodigosPostales'
+        db_table = 'codigospostales'
         ordering = ('-IdCodigoPostal',)
         verbose_name = 'CodigoPostal'
         verbose_name_plural = 'CodigosPostales'
@@ -98,7 +98,7 @@ class Colonias(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'Colonias'
+        db_table = 'colonias'
         ordering = ('-IdColonia',)
         verbose_name = 'Colonia'
         verbose_name_plural = 'Colonias'
@@ -124,7 +124,7 @@ class ContactoMedios(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'ContactoMedios'
+        db_table = 'contactomedios'
         verbose_name = 'ContactoMedio'
         verbose_name_plural = 'ContactoMedios'
         index_together = (('UsuarioContactoMedio','TipoMedioContacto'),)
@@ -159,7 +159,7 @@ class OrdenesCliente(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'OrdenesCliente'
+        db_table = 'ordenescliente'
         ordering = ('-FechaAlta','-HoraAlta','-IdOrdenCliente',)
         verbose_name = 'OrdenCliente',
         verbose_name_plural = 'OrdenesClientes'
@@ -180,7 +180,7 @@ class ItemOrdenesCliente(models.Model):
     CantidadItemOrden = models.PositiveIntegerField(default=0)
 
     class Meta:
-        db_table = 'ItemOrdenCliente'
+        db_table = 'itemordencliente'
         verbose_name = 'ItemOrdenCliente'
         verbose_name_plural = 'ItemOrdenesCliente'
 
