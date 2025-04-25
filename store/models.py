@@ -697,11 +697,7 @@ class ListaPreciosArticuloImpuestos(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
-<<<<<<< HEAD
         db_table = 'listapreciosarticuloimpuestos'
-=======
-        db_table = 'listapreciosarticuloImpuestos'
->>>>>>> heroku
         ordering = ('-IdListaPrecio',)
         verbose_name = 'ListaPreciosArticulosImpuestos'
         verbose_name_plural = 'ListasPreciosArticulosImpuestos'
