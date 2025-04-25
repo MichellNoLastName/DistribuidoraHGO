@@ -30,7 +30,7 @@ class Empleados(models.Model):
 
     class Meta:
         ordering = ('-IdEmpleado',)
-        db_table = "Empleados"
+        db_table = "empleados"
         verbose_name = 'Empleado'
         verbose_name_plural = 'Empleados'
         index_together = (('IdEmpleado','IdUsuario'),)
@@ -70,7 +70,7 @@ class Usuarios(models.Model):
 
     class Meta:
         ordering = ('-IdUsuario',)
-        db_table = "Usuarios"
+        db_table = "usuarios"
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
 
