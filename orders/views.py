@@ -65,7 +65,7 @@ def load_streets(request):
 def load_location(request):
     idCodigoPostal = request.GET.get('idCodigoPostal')
     with connection.cursor() as cursor:
-        cursor.execute("SELECT IdEntidadFederativa,IdLocalidad FROM CodigosPostales WHERE IdCodigoPostal = %s",[idCodigoPostal])
+        cursor.execute("SELECT IdEntidadFederativa,IdLocalidad FROM codigospostales WHERE IdCodigoPostal = %s",[idCodigoPostal])
         result = cursor.fetchone()
 
     data = []

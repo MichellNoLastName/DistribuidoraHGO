@@ -60,7 +60,7 @@ class ProductosSAT(models.Model):
         db_table = "productossat"
         ordering = ('-IdProductoSAT',)
         verbose_name = 'ProductoSAT'
-        verbose_name_plural = 'ProductosSAT',
+        verbose_name_plural = 'ProductosSAT'
 
     def __str__(self):
         return f'{self.DescripcionProductoSAT} ({self.IdProductoSAT})'
@@ -697,7 +697,11 @@ class ListaPreciosArticuloImpuestos(models.Model):
     Version = models.IntegerField(default=0)
 
     class Meta:
+<<<<<<< HEAD
         db_table = 'listapreciosarticuloimpuestos'
+=======
+        db_table = 'listapreciosarticuloImpuestos'
+>>>>>>> heroku
         ordering = ('-IdListaPrecio',)
         verbose_name = 'ListaPreciosArticulosImpuestos'
         verbose_name_plural = 'ListasPreciosArticulosImpuestos'
