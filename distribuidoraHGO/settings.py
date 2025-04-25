@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -91,17 +91,6 @@ WSGI_APPLICATION = "distribuidoraHGO.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-"""DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "distribuidorahgo_20231220",
-        "USER":"root",
-        "PASSWORD":"admin",
-        "HOST":"localhost",
-        "PORT":"3306"
-    }
-}"""
 
 DATABASES = {
      'default': dj_database_url.parse(os.environ.get('JAWSDB_URL'))
