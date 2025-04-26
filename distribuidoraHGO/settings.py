@@ -97,6 +97,8 @@ DATABASES = {
 }
 
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
