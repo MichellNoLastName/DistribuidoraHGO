@@ -23,7 +23,7 @@
   }
 
   div.containerCards #card1{
-    background-image: url("../images/vacutainerBanner.jpg");
+    background-image: url("../images/vacutainerBanner.3236359d91ed.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -75,7 +75,7 @@
 .principal{
     position: relative;
     width: 100%; /* Asegura que el contenedor ocupe todo el ancho del viewport */
-    background-image: url("../images/Presentacion.jpg");
+    background-image: url("../images/Presentacion.0741d80e2590.jpg");
     background-size: 125%;
     background-repeat: no-repeat;
     background-position: center top;
@@ -94,84 +94,84 @@
 }
 
 #swiperMarcas{
-    background-image: url("../images/bannerMarcas.jpg");
+    background-image: url("../images/bannerMarcas.25455cf28568.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 40%;
 }
 
 #swiperMetodosPago{
-    background-image: url("../images/metodosPago.jpg");
+    background-image: url("../images/metodosPago.b61924f64e24.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 40%;
 }
 
 #swiperEnvios{
-    background-image: url("../images/envios.jpg");
+    background-image: url("../images/envios.84c237583210.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 40%;
 }
 
 #swiperCat1{
-    background-image: url("../images/tubosVacutainer.jpg");
+    background-image: url("../images/tubosVacutainer.27c3a374bddc.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
 }
 
 #swiperCat2{
-    background-image: url("../images/agujasVacutainer.jpg");
+    background-image: url("../images/agujasVacutainer.0bb038148061.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
 }
 
 #swiperCat3{
-    background-image: url("../images/lancetasBD.jpg");
+    background-image: url("../images/lancetasBD.165890cef935.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
 }
 
 #swiperCat4{
-    background-image: url("../images/GuantesAmbiderm.jpg");
+    background-image: url("../images/GuantesAmbiderm.9e06c0375f4f.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
 }
 
 #swiperCat5{
-    background-image: url("../images/gasasGalia.jpg");
+    background-image: url("../images/gasasGalia.e4786c84b24c.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
 }
 
 #swiperCat6{
-    background-image: url("../images/reactivos.jpg");
+    background-image: url("../images/reactivos.c8991c9250d0.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
 }
 
 #swiperCat7{
-    background-image: url("../images/desinfectantes.jpg");
+    background-image: url("../images/desinfectantes.353fbfadb5cd.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
 }
 
 #swiperCat8{
-    background-image: url("../images/pruebasOrina.jpg");
+    background-image: url("../images/pruebasOrina.039fd4ac8841.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
 }
 
 #swiperCat9{
-    background-image: url("../images/Antidopping.jpg");
+    background-image: url("../images/Antidopping.d3c52daa3c27.jpg");
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 30%;
@@ -179,7 +179,7 @@
 
 .paymentMethods{
     padding-top:22%;
-    background-image: url("../images/FormasPago.jpg");
+    background-image: url("../images/FormasPago.282fa65fc0a9.jpg");
     background-size:contain;
     background-position: center;
     background-repeat: no-repeat;

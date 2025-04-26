@@ -475,6 +475,10 @@
         font-family: 'Monserrat', sans-serif;
     }
 
+    div.containerCards #card1 h3{
+        font-size: 10px;
+    }
+
     #imagePresentation{
         width: 50%;
         height: auto;
