@@ -29,7 +29,7 @@ async function getData(pFilter) {
                 const url_image = image_url + product.ImagenArticulo
                 console.log(url_image)
                 //const productUrl = "{% url 'store:product_detail' IdArticulo_id="+product.IdArticulo+" slug="+product.SlugArticulo + " %}";
-                const productUrl = "/store/"+product.IdArticulo + "/" + product.SlugArticulo + "/"
+                const productUrl = "/store/product/"+product.IdArticulo + "/" + product.SlugArticulo + "/"
 
                 li.innerHTML = `
                     <a href="${productUrl}" class="text-decoration-none">
